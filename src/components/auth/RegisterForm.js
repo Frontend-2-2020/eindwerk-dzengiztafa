@@ -27,7 +27,6 @@ const RegisterForm = ({ errors }) => {
           type="text" identifier="first_name" error={errors.first_name}
           info="What is your first name?" placeholder="First name" />
 
-
         {/* Last name */}
         <FieldGroup
           type="text" identifier="last_name" error={errors.last_name}

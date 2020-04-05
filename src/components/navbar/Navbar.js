@@ -53,11 +53,15 @@ class NavBar extends Component {
 
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/register">Sign Up</Link>
+        <li className="navbar-item d-flex align-items-center mr-4">
+          <Link className="nav-link" to="/login">
+            Login <i className="fas fa-sign-in-alt fa-lg ml-2 text-align-center"/>
+          </Link>
         </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/login">Login</Link>
+        <li className="navbar-item d-flex align-items-center">
+          <Link className="nav-link" to="/register">
+            Register <i className="far fa-user fa-lg ml-2 text-align-center"/>
+          </Link>
         </li>
       </ul>
     );
@@ -72,7 +76,7 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/profiles">Posts</Link>
+                <Link className="nav-link" to="/posts">Posts</Link>
               </li>
             </ul>
 
@@ -85,10 +89,6 @@ class NavBar extends Component {
 }
 
 
-
-// Exports
-//////////
-
 // Set the prop types for this component
 NavBar.propTypes = {
   logOutUserAction: PropTypes.func.isRequired,
@@ -99,5 +99,9 @@ NavBar.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth
 });
+
+
+// Exports
+//////////
 
 export default connect(mapStateToProps,{ logOutUserAction, clearCurrentProfile: clearCurrentProfileAction })(NavBar);
