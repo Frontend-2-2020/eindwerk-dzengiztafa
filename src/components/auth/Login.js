@@ -6,10 +6,12 @@ import React from 'react';
 
 // Redux
 import { connect } from 'react-redux';
+import { loginUserAction } from "../../redux/actions/authActions";
+import { getErrorsAction } from "../../redux/actions/errorActions";
+
 
 // Form handling
 import { Formik } from 'formik';
-import { getErrorsAction } from "../../redux/actions/errorActions";
 import { validateLoginInput } from "../../validation/login";
 
 // Components
@@ -19,11 +21,11 @@ import LoginForm from "./LoginForm";
 // Register component
 /////////////////////
 
-const Login = ({ getErrorsAction }) => {
+const Login = ({ getErrorsAction, loginUserAction }) => {
 
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
-    console.log(data)
+    loginUserAction(data);
   };
 
   // Function to handle the validation of the input.
@@ -76,4 +78,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction })(Login);
+export default connect(mapStateToProps, { getErrorsAction, loginUserAction })(Login);

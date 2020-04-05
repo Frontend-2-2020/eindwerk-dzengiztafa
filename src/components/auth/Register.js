@@ -6,10 +6,11 @@ import React from 'react';
 
 // Redux
 import { connect } from 'react-redux';
+import { getErrorsAction } from "../../redux/actions/errorActions";
+import { registerUserAction } from "../../redux/actions/authActions";
 
 // Form handling
 import { Formik } from 'formik';
-import { getErrorsAction } from "../../redux/actions/errorActions";
 import { validateRegisterInput } from "../../validation/register";
 
 // Components
@@ -19,11 +20,19 @@ import RegisterForm from "./RegisterForm";
 // Register component
 /////////////////////
 
-const Register = ({ getErrorsAction }) => {
+const Register = ({ getErrorsAction, registerUserAction }) => {
 
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
-    console.log(data)
+    const dataToSend = {
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      favorite_color: data.favorite_color,
+      password: data.password,
+      avatar: data.avatar
+    };
+    registerUserAction(dataToSend);
   };
 
   // Function to handle the validation of the input.
@@ -37,7 +46,6 @@ const Register = ({ getErrorsAction }) => {
     // Return the Errors to Formik
     return errors;
   };
-
 
   return (
     <div className="register">
@@ -82,4 +90,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction })(Register);
+export default connect(mapStateToProps, { getErrorsAction, registerUserAction })(Register);

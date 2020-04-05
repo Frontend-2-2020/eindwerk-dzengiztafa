@@ -18,11 +18,19 @@ import axios from 'axios';
 
 // Register User Action
 export const registerUserAction = (userData, history) => dispatch => {
-
+  axios.post('https://eindwerk.jnnck.be/api/users', userData)
+    .then(res => {
+      console.log(res.data);
+      history.push('/login');
+    })
 };
 
 // Login - Get User Token
 export const loginUserAction = userData => dispatch => {
+  axios.post('https://eindwerk.jnnck.be/oath/token', userData)
+    .then(res => {
+      console.log(res.data);
+    })
 
 };
 

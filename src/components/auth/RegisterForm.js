@@ -61,7 +61,7 @@ const RegisterForm = ({ errors }) => {
           <div className="col-xl-2">
             {/* Color */}
             <FieldGroup
-              type="color" identifier="color" error={errors.color}
+              type="color" identifier="favorite_color" error={errors.favorite_color}
               info="Choose your favorite color" placeholder="#000000" label="Color" />
           </div>
           <div className="col">
@@ -72,7 +72,7 @@ const RegisterForm = ({ errors }) => {
           </div>
         </div>
 
-
+        {/* Submit button */}
         <input type="submit" className="btn btn-info btn-block mt-4"/>
       </div>
     </Form>
