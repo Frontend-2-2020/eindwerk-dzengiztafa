@@ -48,7 +48,7 @@ const Login = ({ getErrorsAction, loginUserAction }) => {
           <div className="col-md-8 m-auto">
             <h1 className="display-4 text-center">Login</h1>
             <p className="lead text-center">Login to your Messageboard account</p>
-            <p className="auth__icon text-center mb-4"><i className="far fa-user fa-4x"/></p>
+            <p className="text-info text-center mb-4"><i className="far fa-user fa-4x"/></p>
 
             <Formik
               onSubmit={handleSubmit}

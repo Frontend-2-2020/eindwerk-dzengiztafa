@@ -54,7 +54,7 @@ const Register = ({ getErrorsAction, registerUserAction }) => {
           <div className="col-md-8 m-auto">
             <h1 className="display-4 text-center">Register</h1>
             <p className="lead text-center">Register your Messageboard account</p>
-            <p className="auth__icon text-center mb-4"><i className="far fa-user fa-4x"/></p>
+            <p className="text-info text-center mb-4"><i className="fas fa-user fa-4x"/></p>
 
             <Formik
               onSubmit={ handleSubmit }
@@ -65,7 +65,7 @@ const Register = ({ getErrorsAction, registerUserAction }) => {
                 email: "",
                 password: "",
                 password2: "",
-                color: "#000000",
+                color: "",
                 avatar: ""
               }}
             >
