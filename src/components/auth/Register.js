@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 // Form handling
 import { Formik } from 'formik';
 import { getErrorsAction } from "../../redux/actions/errorActions";
+import { validateRegisterInput } from "../../validation/register";
 
 // Components
 import RegisterForm from "./RegisterForm";
@@ -28,14 +29,7 @@ const Register = ({ getErrorsAction }) => {
   // Function to handle the validation of the input.
   const handleValidation = input => {
     console.log("handling validation");
-    const errors = {};
-
-    const requiredFields = ["first_name", "last_name"];
-    requiredFields.forEach(field => {
-      if (!input[field]) {
-        errors[field] = "required";
-      }
-    });
+    const errors = validateRegisterInput(input);
 
     // Trigger the Redux action to get the errors
     getErrorsAction(errors);

@@ -15,7 +15,7 @@ import { Form, Field, ErrorMessage } from "formik";
 // Register form
 ////////////////
 
-const RegisterForm = ({errors}) => {
+const RegisterForm = ({ errors }) => {
   return (
     <Form>
       <div className="form-group">
