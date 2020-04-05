@@ -49,15 +49,21 @@ const Register = ({ getErrorsAction }) => {
             <p className="auth__icon text-center mb-4"><i className="far fa-user fa-4x"/></p>
 
             <Formik
-              onSubmit={handleSubmit}
-              validate={handleValidation}
+              onSubmit={ handleSubmit }
+              validate={ handleValidation }
               initialValues={{
                 first_name: "",
                 last_name: "",
+                email: "",
+                password: "",
+                password2: "",
+                color: "#000000",
+                avatar: ""
               }}
             >
               <RegisterForm />
             </Formik>
+
           </div>
         </div>
       </div>

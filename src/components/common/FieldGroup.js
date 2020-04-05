@@ -9,10 +9,10 @@ import classnames from "classnames";
 // FieldGroup component
 ///////////////////////
 
-export const FieldGroup = ({type, identifier, error, placeholder, info}) => {
+export const FieldGroup = ({type, identifier, error, placeholder, info, label}) => {
   return (
     <div className="mb-2">
-      <label htmlFor={identifier}>First name</label>
+      <label htmlFor={identifier}>{label}</label>
       <Field
         type={type}
         className={classnames('form-control form-control-lg', {
