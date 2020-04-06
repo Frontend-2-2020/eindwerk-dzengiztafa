@@ -1,9 +1,12 @@
 // Imports
 //////////
 
+// Base dependencies
 import React from 'react';
-import { Field, ErrorMessage } from "formik";
 import classnames from "classnames";
+
+// Form handling
+import { Field, ErrorMessage } from "formik";
 
 
 // FieldGroup component

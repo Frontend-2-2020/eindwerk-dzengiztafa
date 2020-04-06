@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 // Redux
 import { connect } from 'react-redux';
 import { logOutUserAction } from "../../redux/actions/authActions";
-import { clearCurrentProfileAction } from "../../redux/actions/profileActions";
 
 
 // Component
@@ -17,17 +16,22 @@ import { clearCurrentProfileAction } from "../../redux/actions/profileActions";
 
 const NavBar = ({ logOutUserAction, auth }) => {
 
+  // Fetch isAuthenticated & user from auth in Redux
+  const { user, isAuthenticated } = auth;
+
+  // Handler for clicking logout
   const handleLogout = () => {
     logOutUserAction();
   };
 
+  // Links for when authenticated
   const authLinks = (
     <ul className="navbar-nav ml-auto">
       <li>
         <Link
           to="/profile"
           className="nav-link">
-          <img className="rounded-circle" src={auth.user.avatar} alt={auth.user.first_name}
+          <img className="rounded-circle" src={user.avatar} alt={user.first_name}
                style={{width: '25px', marginRight: '5px'}}/>
         </Link>
       </li>
@@ -41,6 +45,7 @@ const NavBar = ({ logOutUserAction, auth }) => {
     </ul>
   );
 
+  // Links for guests
   const guestLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="navbar-item d-flex align-items-center mr-4">
@@ -56,7 +61,6 @@ const NavBar = ({ logOutUserAction, auth }) => {
     </ul>
   );
 
-
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
       <Link className="navbar-brand" to="/">Message board</Link>
@@ -71,7 +75,7 @@ const NavBar = ({ logOutUserAction, auth }) => {
           </li>
         </ul>
 
-        {auth.isAuthenticated ? authLinks : guestLinks}
+        { isAuthenticated ? authLinks : guestLinks }
 
       </div>
     </nav>
@@ -94,4 +98,4 @@ const mapStateToProps = (state) => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps,{ logOutUserAction, clearCurrentProfileAction })(NavBar);
+export default connect(mapStateToProps,{ logOutUserAction })(NavBar);
