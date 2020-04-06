@@ -14,8 +14,8 @@ import { Form } from "formik";
 import { FieldGroup } from "../common/FieldGroup";
 
 
-// Register form
-////////////////
+// Login form component
+///////////////////////
 
 const LoginForm = ({ errors }) => {
   return (

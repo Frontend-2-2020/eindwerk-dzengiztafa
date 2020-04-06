@@ -19,8 +19,8 @@ import { validateLoginInput } from "../../validation/login";
 import LoginForm from "./LoginForm";
 
 
-// Register component
-/////////////////////
+// Login component
+//////////////////
 
 const Login = ({ getErrorsAction, loginUserAction }) => {
 

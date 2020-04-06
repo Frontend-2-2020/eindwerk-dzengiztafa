@@ -1,33 +1,39 @@
 // Imports
 //////////
 
-import React, {Component} from 'react';
+// Base dependencies
+import React, { useEffect } from 'react';
 import { PropTypes } from 'prop-types';
+import { useHistory } from'react-router-dom';
+
+// Redux
 import { connect } from 'react-redux';
 
 
-// Component
-////////////
+// Landing page component
+/////////////////////////
 
-class Landing extends Component {
+const Landing = ({ auth }) => {
 
-  // Lifecycle method to check for an authenticated user
-  // when the component has mounted. If authenticated
-  // just redirect to the dashboard
-  componentDidMount(){
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+  // Fetch the history
+  let history = useHistory();
+
+  // Fetch data from auth in Redux
+  const { isAuthenticated } = auth;
+
+  // When the user is already logged in, redirect to the posts
+  useEffect(() => {
+    if(isAuthenticated) {
+      history.push('/posts')
     }
-  }
+  });
 
-  render() {
     return (
       <div className="landing">
         <h1>Some Landing page</h1>
       </div>
     );
-  }
-}
+};
 
 
 // Helper methods
@@ -45,4 +51,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps)(Landing);
+export default connect(mapStateToProps, null)(Landing);
