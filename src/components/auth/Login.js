@@ -3,6 +3,7 @@
 
 // Base dependencies
 import React from 'react';
+import { useHistory } from "react-router";
 
 // Redux
 import { connect } from 'react-redux';
@@ -23,9 +24,12 @@ import LoginForm from "./LoginForm";
 
 const Login = ({ getErrorsAction, loginUserAction }) => {
 
+  // Fetch the history
+  let history = useHistory();
+
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
-    loginUserAction(data);
+    loginUserAction(data, history);
   };
 
   // Function to handle the validation of the input.

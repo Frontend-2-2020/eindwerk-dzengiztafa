@@ -11,7 +11,6 @@ import setAuthToken from '../../utils/setAuthToken';
 import axios from 'axios';
 
 
-
 // Actions
 //////////
 
@@ -22,13 +21,12 @@ export const registerUserAction = (userData, history) => dispatch => {
     avatar: "https://api.adorable.io/avatars/285/" + userData.avatar
   })
     .then(res => {
-      console.log();
       history.push('/login');
     })
 };
 
 // Login - Get User Token
-export const loginUserAction = userData => dispatch => {
+export const loginUserAction = (userData, history) => dispatch => {
   axios.post('https://eindwerk.jnnck.be/oauth/token', {
     'username': userData.email,
     'password': userData.password,
@@ -37,22 +35,22 @@ export const loginUserAction = userData => dispatch => {
     'client_secret': 'iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI'
   })
     .then(res => {
-
-      console.log(res.data);
-
       localStorage.setItem('jwtToken', res.data.access_token);
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token;
+      setAuthToken(res.data.access_token);
 
-      axios.get('https://eindwerk.jnnck.be/api/user').then(res => { dispatch(setCurrentUser(res.data)) })
+      axios.get('https://eindwerk.jnnck.be/api/user').then(res => {
+        history.push('/posts');
+        dispatch(setCurrentUser(res.data))
+      });
     })
 };
 
 
 // Logout
 export const logOutUserAction = () => dispatch => {
-  setAuthToken();
   localStorage.removeItem('jwtToken');
-  setCurrentUser({})
+  setAuthToken(false);
+  dispatch(setCurrentUser({}))
 };
 
 

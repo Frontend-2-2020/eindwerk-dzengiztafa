@@ -3,6 +3,7 @@
 
 // Base dependencies
 import React from 'react';
+import { useHistory } from "react-router";
 
 // Redux
 import { connect } from 'react-redux';
@@ -22,6 +23,9 @@ import RegisterForm from "./RegisterForm";
 
 const Register = ({ getErrorsAction, registerUserAction }) => {
 
+  // Fetch the history
+  let history = useHistory();
+
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
     const dataToSend = {
@@ -32,7 +36,7 @@ const Register = ({ getErrorsAction, registerUserAction }) => {
       password: data.password,
       avatar: data.avatar
     };
-    registerUserAction(dataToSend);
+    registerUserAction(dataToSend, history);
   };
 
   // Function to handle the validation of the input.
