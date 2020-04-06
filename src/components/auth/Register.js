@@ -2,13 +2,13 @@
 //////////
 
 // Base dependencies
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useHistory } from "react-router";
 
 // Redux
 import { connect } from 'react-redux';
 import { getErrorsAction } from "../../redux/actions/errorActions";
-import { registerUserAction } from "../../redux/actions/authActions";
+import {fetchCurrentUser, registerUserAction} from "../../redux/actions/authActions";
 
 // Form handling
 import { Formik } from 'formik';
@@ -16,15 +16,31 @@ import { validateRegisterInput } from "../../validation/register";
 
 // Components
 import RegisterForm from "./RegisterForm";
+import setAuthToken from "../../utils/setAuthToken";
+import fullApplicationStore from "../../redux/store";
 
 
 // Register component
 /////////////////////
 
-const Register = ({ getErrorsAction, registerUserAction }) => {
+const Register = ({ auth, getErrorsAction, registerUserAction }) => {
+
+  // Fetch isAuthenticated from auth in Redux state
+  const { isAuthenticated } = auth;
 
   // Fetch the history
-  let history = useHistory();
+  const history = useHistory();
+
+  // When the user is already logged in redirect to the posts page
+  useEffect(() => {
+    if (localStorage.jwtToken || isAuthenticated) {
+      // Set the authToken header auth
+      setAuthToken(localStorage.jwtToken);
+
+      // Dispatch the action to fetch the current user using the token & redirect to posts page
+      fullApplicationStore.dispatch(fetchCurrentUser(history));
+    }
+  });
 
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
@@ -69,7 +85,7 @@ const Register = ({ getErrorsAction, registerUserAction }) => {
                 email: "",
                 password: "",
                 password2: "",
-                color: "",
+                favorite_color: "#FFFFFF",
                 avatar: ""
               }}
             >

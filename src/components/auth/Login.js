@@ -2,14 +2,13 @@
 //////////
 
 // Base dependencies
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useHistory } from "react-router";
 
 // Redux
 import { connect } from 'react-redux';
-import { loginUserAction } from "../../redux/actions/authActions";
+import {fetchCurrentUser, loginUserAction } from "../../redux/actions/authActions";
 import { getErrorsAction } from "../../redux/actions/errorActions";
-
 
 // Form handling
 import { Formik } from 'formik';
@@ -17,15 +16,31 @@ import { validateLoginInput } from "../../validation/login";
 
 // Components
 import LoginForm from "./LoginForm";
+import setAuthToken from "../../utils/setAuthToken";
+import fullApplicationStore from "../../redux/store";
 
 
 // Login component
 //////////////////
 
-const Login = ({ getErrorsAction, loginUserAction }) => {
+const Login = ({ auth, getErrorsAction, loginUserAction }) => {
+
+  // Fetch isAuthenticated from auth in Redux state
+  const { isAuthenticated } = auth;
 
   // Fetch the history
-  let history = useHistory();
+  const history = useHistory();
+
+  // When the user is already logged in or a token is available, redirect to the posts page
+  useEffect(() => {
+    if (localStorage.jwtToken || isAuthenticated) {
+      // Set the authToken header auth
+      setAuthToken(localStorage.jwtToken);
+
+      // Dispatch the action to fetch the current user using the token & redirect to posts page
+      fullApplicationStore.dispatch(fetchCurrentUser(history));
+    }
+  });
 
   // Function to handle the submit data. This will trigger a redux action
   const handleSubmit = data => {
@@ -34,7 +49,6 @@ const Login = ({ getErrorsAction, loginUserAction }) => {
 
   // Function to handle the validation of the input.
   const handleValidation = input => {
-    console.log("handling validation");
     const errors = validateLoginInput(input);
 
     // Trigger the Redux action to get the errors

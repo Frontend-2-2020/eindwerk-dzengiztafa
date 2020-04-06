@@ -15,7 +15,7 @@ import axios from 'axios';
 //////////
 
 // Register User Action
-export const registerUserAction = (userData, history) => dispatch => {
+export const registerUserAction = (userData, history) => {
   axios.post('https://eindwerk.jnnck.be/api/users', {
     ...userData,
     avatar: "https://api.adorable.io/avatars/285/" + userData.avatar
@@ -23,6 +23,14 @@ export const registerUserAction = (userData, history) => dispatch => {
     .then(res => {
       history.push('/login');
     })
+};
+
+// Functionality to fetch the current user & redirect to the login page
+export const fetchCurrentUser = history => dispatch => {
+  axios.get('https://eindwerk.jnnck.be/api/user').then(res => {
+     if(history) { history.push('/posts'); }
+    dispatch(setCurrentUser(res.data))
+  });
 };
 
 // Login - Get User Token
