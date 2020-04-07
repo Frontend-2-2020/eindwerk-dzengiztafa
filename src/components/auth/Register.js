@@ -19,7 +19,7 @@ import { validateRegisterInput } from "../../validation/register";
 import RegisterForm from "./RegisterForm";
 
 // Utils
-import setAuthToken from "../../utils/setAuthToken";
+import { setAuthToken } from "../../utils/setAuthToken";
 
 
 // Register component

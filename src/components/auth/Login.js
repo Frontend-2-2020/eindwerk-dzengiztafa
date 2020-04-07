@@ -19,7 +19,7 @@ import { validateLoginInput } from "../../validation/login";
 import LoginForm from "./LoginForm";
 
 // Utils
-import setAuthToken from "../../utils/setAuthToken";
+import { setAuthToken } from "../../utils/setAuthToken";
 
 
 // Login component

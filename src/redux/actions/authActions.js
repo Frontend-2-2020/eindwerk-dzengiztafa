@@ -5,7 +5,7 @@
 import { SET_CURRENT_USER } from "./types";
 
 // JWT token
-import setAuthToken from "../../utils/setAuthToken";
+import { setAuthToken } from "../../utils/setAuthToken";
 
 // Async functionality to REST endpoints
 import axios from "axios";

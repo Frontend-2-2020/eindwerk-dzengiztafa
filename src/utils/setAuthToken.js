@@ -7,7 +7,7 @@ import axios from "axios";
 // Set JWT as header
 ////////////////////
 
-const setAuthToken = token => {
+export const setAuthToken = token => {
   if(token) {
     // Apply the token to every request
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -16,5 +16,3 @@ const setAuthToken = token => {
     delete axios.defaults.headers.common['Authorization'];
   }
 };
-
-export default setAuthToken;

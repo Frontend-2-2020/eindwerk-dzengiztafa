@@ -2,7 +2,7 @@
 //////////
 
 import { SET_CURRENT_USER } from "../../actions/types";
-import isEmpty from "../../../utils/is-empty";
+import { isEmpty } from "../../../utils/is-empty";
 
 
 // Initial auth state

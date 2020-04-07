@@ -2,7 +2,7 @@
 //////////
 
 import Validator from "validator";
-import isEmpty from "../utils/is-empty";
+import { isEmpty } from "../utils/is-empty";
 
 
 // Exports
