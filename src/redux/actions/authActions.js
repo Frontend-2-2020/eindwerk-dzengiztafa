@@ -57,7 +57,6 @@ export const logOutUserAction = () => dispatch => {
   dispatch(setCurrentUser({}))
 };
 
-
 // Action to set the current user
 export const setCurrentUser = (userData) => {
   return {
