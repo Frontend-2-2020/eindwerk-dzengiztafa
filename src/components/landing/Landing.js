@@ -2,9 +2,9 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from 'react';
-import { PropTypes } from 'prop-types';
-import { useHistory } from'react-router-dom';
+import React, { useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { useHistory } from "react-router-dom";
 
 // Redux
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ const Landing = ({ auth }) => {
   // When the user is already logged in, redirect to the posts
   useEffect(() => {
     if(isAuthenticated) {
-      history.push('/posts')
+      history.push("/posts")
     }
   });
 

@@ -1,7 +1,7 @@
 import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
-} from '../actions/types'
+} from "../actions/types"
 
 // Create a profile
 export const createProfileAction = (profileData, history) => dispatch => {

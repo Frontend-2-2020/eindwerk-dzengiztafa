@@ -2,17 +2,17 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import PropTypes from "prop-types";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { getErrorsAction } from "../../redux/actions/errorActions";
 import { fetchCurrentUserAction, registerUserAction } from "../../redux/actions/authActions";
 
 // Form handling
-import { Formik } from 'formik';
+import { Formik } from "formik";
 import { validateRegisterInput } from "../../validation/register";
 
 // Components

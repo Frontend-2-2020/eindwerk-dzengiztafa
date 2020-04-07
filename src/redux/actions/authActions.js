@@ -5,10 +5,10 @@
 import { SET_CURRENT_USER } from "./types";
 
 // JWT token
-import setAuthToken from '../../utils/setAuthToken';
+import setAuthToken from "../../utils/setAuthToken";
 
 // Async functionality to REST endpoints
-import axios from 'axios';
+import axios from "axios";
 
 
 // Auth actions
@@ -16,34 +16,34 @@ import axios from 'axios';
 
 // Action to register a user
 export const registerUserAction = (userData, history) => {
-  axios.post('https://eindwerk.jnnck.be/api/users', {
+  axios.post("https://eindwerk.jnnck.be/api/users", {
     ...userData,
     avatar: "https://api.adorable.io/avatars/285/" + userData.avatar
   })
     .then(res => {
-      history.push('/login');
+      history.push("/login");
     })
 };
 
 // Action to fetch the current user & redirect to the login page
 export const fetchCurrentUserAction = history => async dispatch => {
-  const result = await axios.get('https://eindwerk.jnnck.be/api/user');
+  const result = await axios.get("https://eindwerk.jnnck.be/api/user");
   dispatch(setCurrentUser(result.data));
 
-  history.push('/posts');
+  history.push("/posts");
 };
 
 // Action to log in & fetch the user
 export const loginUserAction = (userData, history) => dispatch => {
-  axios.post('https://eindwerk.jnnck.be/oauth/token', {
-    'username': userData.email,
-    'password': userData.password,
-    'grant_type': 'password',
-    'client_id': 2,
-    'client_secret': 'iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI'
+  axios.post("https://eindwerk.jnnck.be/oauth/token", {
+    username: userData.email,
+    password: userData.password,
+    grant_type: "password",
+    client_id: 2,
+    client_secret: "iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI"
   })
     .then(async res => {
-      localStorage.setItem('jwtToken', res.data.access_token);
+      localStorage.setItem("jwtToken", res.data.access_token);
       setAuthToken(res.data.access_token);
 
       dispatch(fetchCurrentUserAction(history));
@@ -52,7 +52,7 @@ export const loginUserAction = (userData, history) => dispatch => {
 
 // Action to log a user out & clear the JWT
 export const logOutUserAction = () => dispatch => {
-  localStorage.removeItem('jwtToken');
+  localStorage.removeItem("jwtToken");
   setAuthToken(false);
   dispatch(setCurrentUser({}))
 };

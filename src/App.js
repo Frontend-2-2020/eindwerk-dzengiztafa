@@ -2,12 +2,12 @@
 //////////
 
 // Base dependencies
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Redux
-import { Provider } from 'react-redux';
-import fullApplicationStore from './redux/store';
+import { Provider } from "react-redux";
+import fullApplicationStore from "./redux/store";
 
 // Components
 import Navbar from "./components/navbar/Navbar";
@@ -17,7 +17,7 @@ import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
 
 // Styling
-import './assets/App.scss';
+import "./assets/App.scss";
 
 
 // Full Application

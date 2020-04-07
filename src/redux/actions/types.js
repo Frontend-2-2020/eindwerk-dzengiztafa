@@ -1,14 +1,14 @@
 // A file having only exports of the action types for Redux
 // Errors
-export const GET_ERRORS = 'GET_ERRORS';
+export const GET_ERRORS = "GET_ERRORS";
 
 // Login, register & auth
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 // Profile related
-export const PROFILE_LOADING = 'PROFILE_LOADING';
-export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
+export const PROFILE_LOADING = "PROFILE_LOADING";
+export const CLEAR_CURRENT_PROFILE = "CLEAR_CURRENT_PROFILE";
 
 // Posts related
-export const SET_POSTS_LOADING = 'SET_POSTS_LOADING';
-export const GET_ALL_POSTS = 'GET_ALL_POSTS';
+export const SET_POSTS_LOADING = "SET_POSTS_LOADING";
+export const GET_ALL_POSTS = "GET_ALL_POSTS";

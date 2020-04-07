@@ -1,7 +1,7 @@
 // Imports
 //////////
 
-import { GET_ALL_POSTS, SET_POSTS_LOADING } from '../../actions/types';
+import { GET_ALL_POSTS, SET_POSTS_LOADING } from "../../actions/types";
 
 
 // Initial Posts state

@@ -2,11 +2,11 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { getAllPostsAction } from "../../redux/actions/postActions";
 
 

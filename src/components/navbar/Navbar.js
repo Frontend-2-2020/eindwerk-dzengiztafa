@@ -50,13 +50,13 @@ const NavBar = ({ logOutUserAction, auth }) => {
 };
 
 
-// Set the prop types for this component
+// Prop types for the component
 NavBar.propTypes = {
   logOutUserAction: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
-// add the state(s) as a prop
+// Map the Redux state to props
 const mapStateToProps = (state) => ({
   auth: state.auth
 });

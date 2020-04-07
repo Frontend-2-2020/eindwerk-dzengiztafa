@@ -17,8 +17,8 @@ export const NavAuthenticated = ({ user, handleLogout }) => {
         <Link
           to="/profile"
           className="nav-link">
-          <img className="rounded-circle" src={user.avatar} alt={user.first_name}
-               style={{width: '25px', marginRight: '5px'}}/>
+          <img className="rounded-circle" src={ user.avatar } alt={ user.first_name }
+               style={{ width: '25px', marginRight: '5px' }}/>
         </Link>
       </li>
       <li className="navbar-item d-flex align-items-center">
@@ -33,7 +33,7 @@ export const NavAuthenticated = ({ user, handleLogout }) => {
 };
 
 
-// Set the prop types for this component
+// Prop types for the component
 NavAuthenticated.propTypes = {
   user: PropTypes.object.isRequired,
   handleLogout: PropTypes.func.isRequired,

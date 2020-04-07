@@ -2,10 +2,10 @@
 //////////
 
 // Base dependencies
-import React from 'react';
+import React from "react";
 
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 // Form handling
 import { Form } from "formik";

@@ -2,8 +2,8 @@
 //////////
 
 // Base dependencies
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import classnames from "classnames";
 
 // Form handling
@@ -19,7 +19,7 @@ export const FieldGroup = ({ type, identifier, error, placeholder, info, label }
       <label htmlFor={ identifier }>{ label }</label>
       <Field
         type={ type }
-        className={ classnames('form-control form-control-lg', { 'is-invalid': error }) }
+        className={ classnames("form-control form-control-lg", { "is-invalid": error }) }
         placeholder={ placeholder }
         name={ identifier }
         id={ identifier }
