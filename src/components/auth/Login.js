@@ -2,12 +2,13 @@
 //////////
 
 // Base dependencies
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router";
+import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from 'react-redux';
-import {fetchCurrentUser, loginUserAction } from "../../redux/actions/authActions";
+import { fetchCurrentUserAction, loginUserAction } from "../../redux/actions/authActions";
 import { getErrorsAction } from "../../redux/actions/errorActions";
 
 // Form handling
@@ -16,14 +17,15 @@ import { validateLoginInput } from "../../validation/login";
 
 // Components
 import LoginForm from "./LoginForm";
+
+// Utils
 import setAuthToken from "../../utils/setAuthToken";
-import fullApplicationStore from "../../redux/store";
 
 
 // Login component
 //////////////////
 
-const Login = ({ auth, getErrorsAction, loginUserAction }) => {
+const Login = ({ auth, getErrorsAction, loginUserAction, fetchCurrentUserAction }) => {
 
   // Fetch isAuthenticated from auth in Redux state
   const { isAuthenticated } = auth;
@@ -37,8 +39,8 @@ const Login = ({ auth, getErrorsAction, loginUserAction }) => {
       // Set the authToken header auth
       setAuthToken(localStorage.jwtToken);
 
-      // Dispatch the action to fetch the current user using the token & redirect to posts page
-      fullApplicationStore.dispatch(fetchCurrentUser(history));
+      // Call the action to fetch the current user using the token & redirect to posts page
+      fetchCurrentUserAction(history);
     }
   });
 
@@ -69,8 +71,8 @@ const Login = ({ auth, getErrorsAction, loginUserAction }) => {
             <p className="text-info text-center mb-4"><i className="far fa-user fa-4x"/></p>
 
             <Formik
-              onSubmit={handleSubmit}
-              validate={handleValidation}
+              onSubmit={ handleSubmit }
+              validate={ handleValidation }
               initialValues={{
                 email: "",
                 password: "",
@@ -86,6 +88,16 @@ const Login = ({ auth, getErrorsAction, loginUserAction }) => {
 };
 
 
+// Prop types for the component
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  loginUserAction: PropTypes.func.isRequired,
+  getErrorsAction: PropTypes.func.isRequired,
+  fetchCurrentUserAction: PropTypes.func.isRequired
+};
+
+
 // Map the Redux state to props
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -96,4 +108,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction, loginUserAction })(Login);
+export default connect(mapStateToProps, { getErrorsAction, loginUserAction, fetchCurrentUserAction })(Login);

@@ -24,12 +24,12 @@ const LoginForm = ({ errors }) => {
 
         {/* First name */}
         <FieldGroup
-          type="email" identifier="email" error={errors.email}
+          type="email" identifier="email" error={ errors.email }
           info="What is your Email address?" placeholder="Email" label="Email address" />
 
         {/* Last name */}
         <FieldGroup
-          type="password" identifier="password" error={errors.password}
+          type="password" identifier="password" error={ errors.password }
           info="What is your password?" placeholder="" label="Password"/>
 
         <input type="submit" className="btn btn-info btn-block mt-4"/>
@@ -41,7 +41,6 @@ const LoginForm = ({ errors }) => {
 
 // Map the Redux state to props
 const mapStateToProps = state => ({
-  auth: state.auth,
   errors: state.errors
 });
 

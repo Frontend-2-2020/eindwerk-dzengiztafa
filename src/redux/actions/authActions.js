@@ -26,7 +26,7 @@ export const registerUserAction = (userData, history) => {
 };
 
 // Action to fetch the current user & redirect to the login page
-export const fetchCurrentUser = history => async dispatch => {
+export const fetchCurrentUserAction = history => async dispatch => {
   const result = await axios.get('https://eindwerk.jnnck.be/api/user');
   dispatch(setCurrentUser(result.data));
 
@@ -46,7 +46,7 @@ export const loginUserAction = (userData, history) => dispatch => {
       localStorage.setItem('jwtToken', res.data.access_token);
       setAuthToken(res.data.access_token);
 
-      dispatch(fetchCurrentUser(history));
+      dispatch(fetchCurrentUserAction(history));
     })
 };
 

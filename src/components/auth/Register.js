@@ -2,13 +2,14 @@
 //////////
 
 // Base dependencies
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router";
+import PropTypes from "prop-types";
 
 // Redux
 import { connect } from 'react-redux';
 import { getErrorsAction } from "../../redux/actions/errorActions";
-import {fetchCurrentUser, registerUserAction} from "../../redux/actions/authActions";
+import { fetchCurrentUserAction, registerUserAction } from "../../redux/actions/authActions";
 
 // Form handling
 import { Formik } from 'formik';
@@ -16,14 +17,15 @@ import { validateRegisterInput } from "../../validation/register";
 
 // Components
 import RegisterForm from "./RegisterForm";
+
+// Utils
 import setAuthToken from "../../utils/setAuthToken";
-import fullApplicationStore from "../../redux/store";
 
 
 // Register component
 /////////////////////
 
-const Register = ({ auth, getErrorsAction, registerUserAction }) => {
+const Register = ({ auth, getErrorsAction, registerUserAction, fetchCurrentUserAction }) => {
 
   // Fetch isAuthenticated from auth in Redux state
   const { isAuthenticated } = auth;
@@ -37,8 +39,8 @@ const Register = ({ auth, getErrorsAction, registerUserAction }) => {
       // Set the authToken header auth
       setAuthToken(localStorage.jwtToken);
 
-      // Dispatch the action to fetch the current user using the token & redirect to posts page
-      fullApplicationStore.dispatch(fetchCurrentUser(history));
+      // Call the action to fetch the current user using the token & redirect to posts page
+      fetchCurrentUserAction(history);
     }
   });
 
@@ -57,7 +59,6 @@ const Register = ({ auth, getErrorsAction, registerUserAction }) => {
 
   // Function to handle the validation of the input.
   const handleValidation = input => {
-    console.log("handling validation");
     const errors = validateRegisterInput(input);
 
     // Trigger the Redux action to get the errors
@@ -91,12 +92,21 @@ const Register = ({ auth, getErrorsAction, registerUserAction }) => {
             >
               <RegisterForm />
             </Formik>
-
           </div>
         </div>
       </div>
     </div>
   );
+};
+
+
+// Prop types for the component
+Register.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  registerUserAction: PropTypes.func.isRequired,
+  getErrorsAction: PropTypes.func.isRequired,
+  fetchCurrentUserAction: PropTypes.func.isRequired
 };
 
 
@@ -110,4 +120,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction, registerUserAction })(Register);
+export default connect(mapStateToProps, { getErrorsAction, registerUserAction, fetchCurrentUserAction })(Register);
