@@ -6,6 +6,9 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 
+// NavGuest component
+/////////////////////
+
 export const NavGuest = () => {
   return (
     <ul className="navbar-nav ml-auto">

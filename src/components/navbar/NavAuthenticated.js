@@ -4,8 +4,11 @@
 // Base dependencies
 import React from 'react';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
+// NavAuthenticated component
+/////////////////////////////
 
 export const NavAuthenticated = ({ user, handleLogout }) => {
   return (
@@ -27,4 +30,11 @@ export const NavAuthenticated = ({ user, handleLogout }) => {
       </li>
     </ul>
   );
+};
+
+
+// Set the prop types for this component
+NavAuthenticated.propTypes = {
+  user: PropTypes.object.isRequired,
+  handleLogout: PropTypes.func.isRequired,
 };

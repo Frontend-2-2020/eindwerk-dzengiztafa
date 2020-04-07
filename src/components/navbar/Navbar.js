@@ -15,8 +15,8 @@ import { NavAuthenticated } from './NavAuthenticated';
 import { NavGuest } from './NavGuest';
 
 
-// Component
-////////////
+// Navbar component
+///////////////////
 
 const NavBar = ({ logOutUserAction, auth }) => {
 
@@ -42,11 +42,7 @@ const NavBar = ({ logOutUserAction, auth }) => {
           </li>
         </ul>
 
-        {
-          isAuthenticated
-            ? <NavAuthenticated user={user} handleLogout={ handleLogout } />
-            : <NavGuest />
-        }
+        { isAuthenticated ? <NavAuthenticated user={user} handleLogout={ handleLogout } /> : <NavGuest /> }
 
       </div>
     </nav>
