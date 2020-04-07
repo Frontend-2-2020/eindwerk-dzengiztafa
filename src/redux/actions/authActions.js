@@ -11,10 +11,10 @@ import setAuthToken from '../../utils/setAuthToken';
 import axios from 'axios';
 
 
-// Actions
-//////////
+// Auth actions
+///////////////
 
-// Register User Action
+// Action to register a user
 export const registerUserAction = (userData, history) => {
   axios.post('https://eindwerk.jnnck.be/api/users', {
     ...userData,
@@ -25,15 +25,15 @@ export const registerUserAction = (userData, history) => {
     })
 };
 
-// Functionality to fetch the current user & redirect to the login page
-export const fetchCurrentUser = history => dispatch => {
-  axios.get('https://eindwerk.jnnck.be/api/user').then(res => {
-     if(history) { history.push('/posts'); }
-    dispatch(setCurrentUser(res.data))
-  });
+// Action to fetch the current user & redirect to the login page
+export const fetchCurrentUser = history => async dispatch => {
+  const result = await axios.get('https://eindwerk.jnnck.be/api/user');
+  dispatch(setCurrentUser(result.data));
+
+  history.push('/posts');
 };
 
-// Login - Get User Token
+// Action to log in & fetch the user
 export const loginUserAction = (userData, history) => dispatch => {
   axios.post('https://eindwerk.jnnck.be/oauth/token', {
     'username': userData.email,
@@ -42,19 +42,15 @@ export const loginUserAction = (userData, history) => dispatch => {
     'client_id': 2,
     'client_secret': 'iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI'
   })
-    .then(res => {
+    .then(async res => {
       localStorage.setItem('jwtToken', res.data.access_token);
       setAuthToken(res.data.access_token);
 
-      axios.get('https://eindwerk.jnnck.be/api/user').then(res => {
-        history.push('/posts');
-        dispatch(setCurrentUser(res.data))
-      });
+      dispatch(fetchCurrentUser(history));
     })
 };
 
-
-// Logout
+// Action to log a user out & clear the JWT
 export const logOutUserAction = () => dispatch => {
   localStorage.removeItem('jwtToken');
   setAuthToken(false);
@@ -62,10 +58,7 @@ export const logOutUserAction = () => dispatch => {
 };
 
 
-// Helper methods
-/////////////////
-
-// Set logged in user
+// Action to set the current user
 export const setCurrentUser = (userData) => {
   return {
     type: SET_CURRENT_USER,
