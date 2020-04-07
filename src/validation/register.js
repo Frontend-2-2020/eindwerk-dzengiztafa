@@ -66,6 +66,6 @@ export const validateRegisterInput = (data) => {
     errors.avatar = "Avatar name is required";
   }
 
-  // Return errors object and validation boolean
+  // Return errors object
   return errors
 };

@@ -12,8 +12,6 @@ export const validateLoginInput = (data) => {
   // Create an empty errors object
   let errors = {};
 
-  console.log(data);
-
   // Treat the fields to be validated as an empty string when not filled in
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
@@ -32,6 +30,6 @@ export const validateLoginInput = (data) => {
     errors.password = "Password is required";
   }
 
-  // Return errors object and validation boolean
+  // Return errors object
   return errors
 };

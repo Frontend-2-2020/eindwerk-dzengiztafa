@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 // Redux
 import { connect } from "react-redux";
 import { getErrorsAction } from "../../redux/actions/errorActions";
-import { fetchCurrentUserAction, registerUserAction } from "../../redux/actions/authActions";
+import { fetchAndPrepareCurrentUserAction, registerUserAction } from "../../redux/actions/authActions";
 
 // Form handling
 import { Formik } from "formik";
@@ -18,14 +18,11 @@ import { validateRegisterInput } from "../../validation/register";
 // Components
 import RegisterForm from "./RegisterForm";
 
-// Utils
-import { setAuthToken } from "../../utils/setAuthToken";
-
 
 // Register component
 /////////////////////
 
-const Register = ({ auth, getErrorsAction, registerUserAction, fetchCurrentUserAction }) => {
+const Register = ({ auth, getErrorsAction, registerUserAction, fetchAndPrepareCurrentUserAction }) => {
 
   // Fetch isAuthenticated from auth in Redux state
   const { isAuthenticated } = auth;
@@ -36,11 +33,7 @@ const Register = ({ auth, getErrorsAction, registerUserAction, fetchCurrentUserA
   // When the user is already logged in redirect to the posts page
   useEffect(() => {
     if (localStorage.jwtToken || isAuthenticated) {
-      // Set the authToken header auth
-      setAuthToken(localStorage.jwtToken);
-
-      // Call the action to fetch the current user using the token & redirect to posts page
-      fetchCurrentUserAction(history);
+      fetchAndPrepareCurrentUserAction(localStorage.jwtToken, history);
     }
   });
 
@@ -120,4 +113,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction, registerUserAction, fetchCurrentUserAction })(Register);
+export default connect(mapStateToProps, { getErrorsAction, registerUserAction, fetchAndPrepareCurrentUserAction })(Register);

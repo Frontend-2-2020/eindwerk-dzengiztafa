@@ -26,10 +26,15 @@ export const registerUserAction = (userData, history) => {
 };
 
 // Action to fetch the current user & redirect to the login page
-export const fetchCurrentUserAction = history => async dispatch => {
+export const fetchAndPrepareCurrentUserAction = (token, history) => async dispatch => {
+  // Set the access token to the authorization header of Axios
+  setAuthToken(token);
+
+  // Fetch the current user
   const result = await axios.get("https://eindwerk.jnnck.be/api/user");
   dispatch(setCurrentUser(result.data));
 
+  // Redirect to the posts page
   history.push("/posts");
 };
 
@@ -42,18 +47,20 @@ export const loginUserAction = (userData, history) => dispatch => {
     client_id: 2,
     client_secret: "iwrHFPcaiQ3bZTzHEwQpYkpiuHUlbIOJ9SAI6DLI"
   })
-    .then(async res => {
+    .then(res => {
+      // Save the access token in the localstorage & prepare + fetch the current user
       localStorage.setItem("jwtToken", res.data.access_token);
-      setAuthToken(res.data.access_token);
-
-      dispatch(fetchCurrentUserAction(history));
+      dispatch(fetchAndPrepareCurrentUserAction(res.data.access_token, history));
     })
 };
 
-// Action to log a user out & clear the JWT
+// Action to log a user out
 export const logOutUserAction = () => dispatch => {
+  // Clear the JWT, remove it from Axios header
   localStorage.removeItem("jwtToken");
   setAuthToken(false);
+
+  // Dispatch the action to empty the current user
   dispatch(setCurrentUser({}))
 };
 
