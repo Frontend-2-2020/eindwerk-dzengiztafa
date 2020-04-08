@@ -87,7 +87,7 @@ Login.propTypes = {
   errors: PropTypes.object.isRequired,
   loginUserAction: PropTypes.func.isRequired,
   getErrorsAction: PropTypes.func.isRequired,
-  fetchCurrentUserAction: PropTypes.func.isRequired
+  fetchAndPrepareCurrentUserAction: PropTypes.func.isRequired
 };
 
 

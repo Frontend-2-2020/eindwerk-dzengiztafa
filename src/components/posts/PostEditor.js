@@ -19,17 +19,16 @@ export const PostEditor = ({ handleSubmit }) => {
   const [input, setInput] = useState('');
 
   return (
-    <div style={{ margin: "2em" }}>
+    <div style={{ margin: "3em" }}>
+      <h5>New Post</h5>
       <CKEditor
         editor={ ClassicEditor }
-        data="<p>What's on your mind?</p>"
+        data=""
         onInit={ editor => {
-          // You can store the "editor" and use when it is needed.
           console.log( 'Editor is ready to use!', editor );
         } }
         onChange={ ( event, editor ) => {
           const data = editor.getData();
-          console.log( { event, editor, data } );
           setInput(data);
         } }
         onBlur={ ( event, editor ) => {
@@ -39,7 +38,6 @@ export const PostEditor = ({ handleSubmit }) => {
           console.log( 'Focus.', editor );
         } }
       />
-
       <button className="btn btn-info btn-block mt-4" onClick={ () => handleSubmit(input) }>Submit</button>
     </div>
   );

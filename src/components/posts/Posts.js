@@ -6,13 +6,16 @@ import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 // Redux
-import {connect} from "react-redux";
-import {getAllPostsAction} from "../../redux/actions/postActions";
+import { connect } from "react-redux";
+import { getAllPostsAction } from "../../redux/actions/postActions";
 
 // Components
 import { Spinner } from "../spinner/Spinner";
 import { PostIntro } from "./PostIntro";
 import { PostEditor } from "./PostEditor";
+
+// HTML Parser
+import DOMPurify from 'dompurify';
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
@@ -30,7 +33,7 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
   // Function to handle the submit of the CKE formdata
   const handleSubmit = (data) => {
     console.log('submitting cke data');
-    console.log(data)
+    console.log(data);
   };
 
   // Generate content
@@ -49,7 +52,6 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
   return (
     <div>
       { auth.isAuthenticated && <PostEditor handleSubmit={handleSubmit}/> }
-
       { content }
     </div>
   );
