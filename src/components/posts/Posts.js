@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 // Redux
 import { connect } from "react-redux";
 import { getAllPostsAction } from "../../redux/actions/postActions";
+import {Spinner} from "../spinner/Spinner";
 
 
 // Posts component
@@ -15,13 +16,22 @@ import { getAllPostsAction } from "../../redux/actions/postActions";
 
 const Posts = ({ auth, post, errors, getAllPostsAction }) => {
 
+  // When the component loads, fetch all the posts
   useEffect(() => {
     getAllPostsAction();
   },[getAllPostsAction]);
 
+  // Generate content
+  let content;
+  if(post.loading) {
+    content = <Spinner />
+  } else {
+    content = <h1>Posts</h1>
+  }
+
   return (
     <div>
-      <h1>Posts</h1>
+      { content }
     </div>
   );
 };
