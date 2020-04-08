@@ -2,13 +2,15 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 
 // Redux
-import { connect } from "react-redux";
-import { getAllPostsAction } from "../../redux/actions/postActions";
+import {connect} from "react-redux";
+import {getAllPostsAction} from "../../redux/actions/postActions";
 import {Spinner} from "../spinner/Spinner";
+import {PostIntro} from "./PostIntro";
+import {isEmpty} from "../../utils/is-empty";
 
 
 // Posts component
@@ -19,14 +21,19 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
   // When the component loads, fetch all the posts
   useEffect(() => {
     getAllPostsAction();
-  },[getAllPostsAction]);
+  }, [getAllPostsAction]);
 
   // Generate content
   let content;
-  if(post.loading) {
+  if (post.loading || isEmpty(post.batchPosts)) {
     content = <Spinner />
   } else {
-    content = <h1>Posts</h1>
+    content = post.batchPosts.data.map(post => (
+      <PostIntro
+        content={ post.body } user={ post.user_id } createdAt={ post.created_at }
+        title={ post.title } comments={ post.comments_count }
+      />
+    ))
   }
 
   return (
