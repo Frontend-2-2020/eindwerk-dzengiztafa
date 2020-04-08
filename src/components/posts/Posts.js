@@ -12,19 +12,10 @@ import {getAllPostsAction} from "../../redux/actions/postActions";
 // Components
 import { Spinner } from "../spinner/Spinner";
 import { PostIntro } from "./PostIntro";
-import PostCreate from "./PostForm";
+import { PostEditor } from "./PostEditor";
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
-import LoginForm from "../auth/LoginForm";
-import {Formik} from "formik";
-import Login from "../auth/Login";
-import PostForm from "./PostForm";
-
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import PostEditor from "./PostEditor";
-
 
 // Posts component
 //////////////////
@@ -50,7 +41,7 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
     content = post.batchPosts.data.map(post => (
       <PostIntro
         content={ post.body } user={ post.user_id } createdAt={ post.created_at }
-        title={ post.title } comments={ post.comments_count }
+        title={ post.title } comments={ post.comments_count } key={ post.id }
       />
     ))
   }

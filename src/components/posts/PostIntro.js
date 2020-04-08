@@ -35,7 +35,7 @@ export const PostIntro = ({ title, createdAt, user, content, comments }) => {
 PostIntro.propTypes = {
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  user: PropTypes.string.isRequired,
+  user: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
+  comments: PropTypes.number.isRequired,
 };

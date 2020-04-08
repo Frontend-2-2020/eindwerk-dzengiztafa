@@ -13,7 +13,7 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 // PostEditor component
 ///////////////////////
 
-const PostEditor = ({ handleSubmit }) => {
+export const PostEditor = ({ handleSubmit }) => {
 
   // State handling
   const [input, setInput] = useState('');
@@ -50,8 +50,3 @@ const PostEditor = ({ handleSubmit }) => {
 PostEditor.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
-
-// Exports
-//////////
-
-export default PostEditor;
