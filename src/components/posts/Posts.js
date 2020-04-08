@@ -8,9 +8,19 @@ import PropTypes from "prop-types";
 // Redux
 import {connect} from "react-redux";
 import {getAllPostsAction} from "../../redux/actions/postActions";
-import {Spinner} from "../spinner/Spinner";
-import {PostIntro} from "./PostIntro";
-import {isEmpty} from "../../utils/is-empty";
+
+// Components
+import { Spinner } from "../spinner/Spinner";
+import { PostIntro } from "./PostIntro";
+import PostCreate from "./PostForm";
+
+// Utils
+import { isEmpty } from "../../utils/is-empty";
+import LoginForm from "../auth/LoginForm";
+import {Formik} from "formik";
+import Login from "../auth/Login";
+import PostForm from "./PostForm";
+
 
 
 // Posts component
@@ -22,6 +32,33 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
   useEffect(() => {
     getAllPostsAction();
   }, [getAllPostsAction]);
+
+  // Function to handle the submit data. This will trigger a redux action
+  const handleSubmit = data => {
+    console.log('handling submit');
+    console.log(data);
+  };
+
+  // Function to handle the validation of the input.
+  const handleValidation = input => {
+    console.log('handling validation');
+    console.log(input);
+  };
+
+  // New form content
+  const newForm = (
+    <div className="mb-4">
+      <Formik
+        onSubmit={handleSubmit}
+        validate={handleValidation}
+        initialValues={{
+          newPost: ""
+        }}
+      >
+        <PostForm />
+      </Formik>
+    </div>
+  );
 
   // Generate content
   let content;
@@ -38,6 +75,8 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
 
   return (
     <div>
+      { auth.isAuthenticated ? newForm : "" }
+
       { content }
     </div>
   );
