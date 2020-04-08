@@ -21,6 +21,9 @@ import {Formik} from "formik";
 import Login from "../auth/Login";
 import PostForm from "./PostForm";
 
+import CKEditor from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import PostEditor from "./PostEditor";
 
 
 // Posts component
@@ -33,32 +36,11 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
     getAllPostsAction();
   }, [getAllPostsAction]);
 
-  // Function to handle the submit data. This will trigger a redux action
-  const handleSubmit = data => {
-    console.log('handling submit');
-    console.log(data);
+  // Function to handle the submit of the CKE formdata
+  const handleSubmit = (data) => {
+    console.log('submitting cke data');
+    console.log(data)
   };
-
-  // Function to handle the validation of the input.
-  const handleValidation = input => {
-    console.log('handling validation');
-    console.log(input);
-  };
-
-  // New form content
-  const newForm = (
-    <div className="mb-4">
-      <Formik
-        onSubmit={handleSubmit}
-        validate={handleValidation}
-        initialValues={{
-          newPost: ""
-        }}
-      >
-        <PostForm />
-      </Formik>
-    </div>
-  );
 
   // Generate content
   let content;
@@ -75,7 +57,7 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
 
   return (
     <div>
-      { auth.isAuthenticated ? newForm : "" }
+      { auth.isAuthenticated && <PostEditor handleSubmit={handleSubmit}/> }
 
       { content }
     </div>
