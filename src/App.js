@@ -16,9 +16,10 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
 import PostDetail from "./components/posts/PostDetail";
+import EditPost from "./components/posts/EditPost";
 
 // Security
-import PrivateComponent from "./components/security/PrivateComponent";
+import PrivateRoute from "./components/security/PrivateRoute";
 
 // Styling
 import "./assets/App.scss";
@@ -41,6 +42,7 @@ export const App = () => {
             <Route exact path="/register" component={ Register } />
             <Route exact path="/login" component={ Login } />
             <Route exact path="/post/:postId" component={ PostDetail } />
+            <PrivateRoute exact path="/edit/:postId" component={ EditPost } />
           </div>
         </div>
       </Router>

@@ -10,10 +10,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 
 
-// Component
-////////////
+// PrivateRoute component
+/////////////////////////
 
-// Check the following link for information about private routes
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route
     {...rest}

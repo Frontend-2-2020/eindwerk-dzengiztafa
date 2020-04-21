@@ -49,7 +49,7 @@ const Posts = ({ auth, post, errors, getAllPostsAction, createPostAction }) => {
 
   return (
     <div>
-      { auth.isAuthenticated && <PostEditor handleSubmit={handleSubmit}/> }
+      { auth.isAuthenticated && <PostEditor initialTitle=""/> }
       { content }
     </div>
   );

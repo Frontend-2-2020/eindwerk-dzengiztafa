@@ -23,7 +23,7 @@ import PostForm from "./PostForm";
 // PostEditor component
 ///////////////////////
 
-const PostEditor = ({ getErrorsAction, createPostAction }) => {
+const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
 
   // State handling
   const [input, setInput] = useState('');
@@ -58,7 +58,7 @@ const PostEditor = ({ getErrorsAction, createPostAction }) => {
         onSubmit={ handleFormSubmit }
         validate={ handleValidation }
         initialValues={{
-          title: "",
+          title: initialTitle,
         }}
       >
         <div>
@@ -92,8 +92,8 @@ const PostEditor = ({ getErrorsAction, createPostAction }) => {
 
 // Prop types for the component
 PostEditor.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   createPostAction: PropTypes.func.isRequired,
+  initialTitle: PropTypes.string.isRequired,
 };
 
 

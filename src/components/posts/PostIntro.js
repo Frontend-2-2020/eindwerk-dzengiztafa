@@ -20,21 +20,16 @@ const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, de
     deletePostAction(postId)
   };
 
-  const handleEditClick = () => {
-    console.log('editing postId ' + postId);
-  };
-
   let authContent;
   if(auth.isAuthenticated) {
     if(user === auth.user.id) {
       authContent = (
           <div>
-            <button
-              onClick={handleEditClick}
+            <Link to={`edit/${postId}`}
               className="btn btn-info btn-sm btn-warning ml-2"
             >
               <i className="far fa-edit"/>
-            </button>
+            </Link>
             <button
               onClick={handleDeleteClick}
               className="btn btn-info btn-sm btn-danger ml-2"

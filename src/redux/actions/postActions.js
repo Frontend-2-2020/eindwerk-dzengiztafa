@@ -56,6 +56,12 @@ export const deletePostAction = postId => dispatch => {
     })
 };
 
+// Action to edit a post
+export const editPostAction = (postId, postBody, history) => dispatch => {
+  console.log('Editing postId ' + postId + ' with body: ' + postBody);
+  history.push('/posts');
+};
+
 // Action to set the posts as loading
 const setPostsLoading = () => {
   return {
