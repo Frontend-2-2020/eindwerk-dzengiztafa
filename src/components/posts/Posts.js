@@ -12,10 +12,7 @@ import { getAllPostsAction } from "../../redux/actions/postActions";
 // Components
 import { Spinner } from "../spinner/Spinner";
 import { PostIntro } from "./PostIntro";
-import { PostEditor } from "./PostEditor";
-
-// HTML Parser
-import DOMPurify from 'dompurify';
+import PostEditor from "./PostEditor";
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
@@ -23,7 +20,7 @@ import { isEmpty } from "../../utils/is-empty";
 // Posts component
 //////////////////
 
-const Posts = ({ auth, post, errors, getAllPostsAction }) => {
+const Posts = ({ auth, post, errors, getAllPostsAction, createPostAction }) => {
 
   // When the component loads, fetch all the posts
   useEffect(() => {
@@ -32,8 +29,9 @@ const Posts = ({ auth, post, errors, getAllPostsAction }) => {
 
   // Function to handle the submit of the CKE formdata
   const handleSubmit = (data) => {
-    console.log('submitting cke data');
-    console.log(data);
+    // console.log('submitting cke data');
+    // console.log(data);
+    createPostAction();
   };
 
   // Generate content

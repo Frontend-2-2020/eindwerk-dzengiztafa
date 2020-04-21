@@ -23,6 +23,18 @@ export const getAllPostsAction = () => dispatch => {
         payload: res.data
       })
     })
+
+};
+
+// Action to create a post
+export const createPostAction = content => dispatch => {
+  axios.post('https://eindwerk.jnnck.be/api/posts', content)
+    .then(res => {
+      dispatch(getAllPostsAction());
+    })
+    .catch(err => {
+      console.log(err);
+    })
 };
 
 // Action to set the posts as loading

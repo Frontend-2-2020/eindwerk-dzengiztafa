@@ -20,7 +20,8 @@ export const PostIntro = ({ title, createdAt, user, content, comments }) => {
       </div>
       <div className="card-body">
         <h5 className="card-title">{ user }</h5>
-        <p className="card-text">{ content.substring(0, 100) + "..." }</p>
+        <div dangerouslySetInnerHTML={{__html: content}}/>
+        {/*<p className="card-text">{ content.substring(0, 100) + "..." }</p>*/}
         <div className="d-flex justify-content-between align-items-end">
           <span className="badge badge-secondary">{ comments + " comments" }</span>
           <a href="#" className="btn btn-info btn-sm">Read more</a>
