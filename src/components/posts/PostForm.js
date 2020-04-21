@@ -24,7 +24,7 @@ const PostForm = ({ errors }) => {
 
         {/* New Post */}
         <FieldGroup
-          type="text" identifier="title" error={ errors.postBody }
+          type="text" identifier="title" error={ errors.title }
           info="Please provide a title" placeholder="Some title" label="Provide a title"/>
 
         <input type="submit" className="btn btn-info btn-block mt-4"/>
