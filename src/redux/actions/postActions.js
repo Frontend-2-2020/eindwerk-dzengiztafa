@@ -2,7 +2,7 @@
 //////////
 
 // Action types
-import {GET_ALL_POSTS, GET_POST_DETAIL, SET_POSTS_LOADING} from "./types";
+import { GET_ALL_POSTS, GET_POST_DETAIL, SET_POSTS_LOADING } from "./types";
 
 // Async functionality to REST endpoints
 import axios from "axios";
