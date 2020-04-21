@@ -11,7 +11,7 @@ import { getAllPostsAction } from "../../redux/actions/postActions";
 
 // Components
 import { Spinner } from "../spinner/Spinner";
-import { PostIntro } from "./PostIntro";
+import PostIntro from "./PostIntro";
 import PostEditor from "./PostEditor";
 
 // Utils

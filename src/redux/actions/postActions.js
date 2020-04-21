@@ -48,6 +48,14 @@ export const getPostDetailAction = postId => dispatch => {
     })
 };
 
+// Action to delete a post
+export const deletePostAction = postId => dispatch => {
+  axios.delete('https://eindwerk.jnnck.be/api/posts/' + postId)
+    .then(res => {
+      dispatch(getAllPostsAction());
+    })
+};
+
 // Action to set the posts as loading
 const setPostsLoading = () => {
   return {
