@@ -17,6 +17,9 @@ import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
 import PostDetail from "./components/posts/PostDetail";
 
+// Security
+import PrivateComponent from "./components/security/PrivateComponent";
+
 // Styling
 import "./assets/App.scss";
 
