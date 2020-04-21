@@ -15,6 +15,7 @@ import Landing from "./components/landing/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Posts from "./components/posts/Posts";
+import PostDetail from "./components/posts/PostDetail";
 
 // Styling
 import "./assets/App.scss";
@@ -36,6 +37,7 @@ export const App = () => {
             <Route exact path="/posts" component={ Posts } />
             <Route exact path="/register" component={ Register } />
             <Route exact path="/login" component={ Login } />
+            <Route exact path="/post/:postId" component={ PostDetail } />
           </div>
         </div>
       </Router>

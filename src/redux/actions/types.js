@@ -12,3 +12,4 @@ export const CLEAR_CURRENT_PROFILE = "CLEAR_CURRENT_PROFILE";
 // Posts related
 export const SET_POSTS_LOADING = "SET_POSTS_LOADING";
 export const GET_ALL_POSTS = "GET_ALL_POSTS";
+export const GET_POST_DETAIL = "GET_POST_DETAIL";

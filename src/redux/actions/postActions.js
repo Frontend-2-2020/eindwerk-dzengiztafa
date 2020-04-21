@@ -2,7 +2,7 @@
 //////////
 
 // Action types
-import { GET_ALL_POSTS, SET_POSTS_LOADING } from "./types";
+import {GET_ALL_POSTS, GET_POST_DETAIL, SET_POSTS_LOADING} from "./types";
 
 // Async functionality to REST endpoints
 import axios from "axios";
@@ -34,6 +34,17 @@ export const createPostAction = content => dispatch => {
     })
     .catch(err => {
       console.log(err);
+    })
+};
+
+// Action to get the post detail
+export const getPostDetailAction = postId => dispatch => {
+  axios.get('https://eindwerk.jnnck.be/api/posts/' + postId)
+    .then(res => {
+      dispatch({
+        type: GET_POST_DETAIL,
+        payload: res.data
+      })
     })
 };
 

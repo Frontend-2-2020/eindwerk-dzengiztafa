@@ -3,13 +3,14 @@
 
 // Base dependencies
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 
 // PostIntro component
 //////////////////////
 
-export const PostIntro = ({ title, createdAt, user, content, comments }) => {
+export const PostIntro = ({ title, createdAt, user, content, comments, postId }) => {
   return (
     <div className="card mb-4">
       <div className="card-header">
@@ -24,7 +25,7 @@ export const PostIntro = ({ title, createdAt, user, content, comments }) => {
         {/*<p className="card-text">{ content.substring(0, 100) + "..." }</p>*/}
         <div className="d-flex justify-content-between align-items-end">
           <span className="badge badge-secondary">{ comments + " comments" }</span>
-          <a href="#" className="btn btn-info btn-sm">Read more</a>
+          <Link to={`/post/${postId}`} className="btn btn-info btn-sm">Read more</Link>
         </div>
       </div>
     </div>
@@ -39,4 +40,5 @@ PostIntro.propTypes = {
   user: PropTypes.number.isRequired,
   content: PropTypes.string.isRequired,
   comments: PropTypes.number.isRequired,
+  postId: PropTypes.number.isRequired,
 };

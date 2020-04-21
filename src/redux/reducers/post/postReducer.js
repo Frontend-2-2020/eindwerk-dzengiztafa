@@ -1,7 +1,7 @@
 // Imports
 //////////
 
-import { GET_ALL_POSTS, SET_POSTS_LOADING } from "../../actions/types";
+import { GET_ALL_POSTS, SET_POSTS_LOADING, GET_POST_DETAIL } from "../../actions/types";
 
 
 // Initial Posts state
@@ -29,6 +29,12 @@ export default function(state = initialPostsState, action) {
       return {
         ...state,
         loading: true
+      };
+    case GET_POST_DETAIL:
+      return {
+        ...state,
+        singlePost: action.payload,
+        loading: false
       };
     default:
       return state
