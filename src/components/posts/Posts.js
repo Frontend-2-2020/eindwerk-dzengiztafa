@@ -20,19 +20,13 @@ import { isEmpty } from "../../utils/is-empty";
 // Posts component
 //////////////////
 
-const Posts = ({ auth, post, errors, getAllPostsAction, createPostAction }) => {
+const Posts = ({ auth, post, getAllPostsAction }) => {
 
   // When the component loads, fetch all the posts
   useEffect(() => {
     getAllPostsAction();
   }, [getAllPostsAction]);
 
-  // Function to handle the submit of the CKE formdata
-  const handleSubmit = (data) => {
-    // console.log('submitting cke data');
-    // console.log(data);
-    createPostAction();
-  };
 
   // Generate content
   let content;

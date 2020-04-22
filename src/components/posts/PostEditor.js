@@ -32,7 +32,6 @@ const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
     };
 
     createPostAction(newPostData);
-
   };
 
   const handleValidation = input => {
