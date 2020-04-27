@@ -9,11 +9,10 @@ import { connect } from "react-redux";
 
 // Form handling
 import { Form } from "formik";
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 // Components
 import { FieldGroup } from "../common/FieldGroup";
+import CkeGroup from "../common/CKEGroup";
 
 
 // PostForm component
@@ -30,14 +29,12 @@ const PostForm = ({ setFieldValue, values, errors }) => {
           info="Please provide a title" placeholder="Some title" label="Provide a title"/>
       </div>
       <div className="form-group">
-          <CKEditor
-            editor={ ClassicEditor }
-            data={ values.body }
-            onChange={ ( event, editor ) => {
-              const data = editor.getData();
-              setFieldValue('body', data);
-            }}
+          <CkeGroup
+            identifier="body" setFieldValue={setFieldValue} values={values}
+            info="Please share what's on your mind. Insert plain text or use html"
+            error={errors.body}
           />
+        {errors && <small className="text-danger">{ errors.body }</small>}
       </div>
       <input type="submit" className="btn btn-info btn-block mt-4"/>
     </Form>

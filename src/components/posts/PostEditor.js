@@ -2,7 +2,7 @@
 //////////
 
 // Base dependencies
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -23,17 +23,30 @@ import PostForm from "./PostForm";
 
 const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
 
-  //
-  const handleFormSubmit = postInfo => {
-    console.log('trying to submit new post');
+  const [initialValues, setInitialValues] = useState({
+    title: initialTitle,
+    body: "What's on your <strong>mind</strong>?"
+  });
+
+  // Function to handle the sumbit of the form data
+  const handleFormSubmit = (postInfo, { resetForm }) => {
+
+    // Generate the post data
     const newPostData = {
       title: postInfo.title,
       body: postInfo.body
     };
 
+    // Fire up the action to create a post
     createPostAction(newPostData);
+
+    // Reset the form
+    resetForm({
+      ...initialValues
+    })
   };
 
+  // Function to handle the validation of the form
   const handleValidation = input => {
     const errors = validateNewPostInput(input);
 
