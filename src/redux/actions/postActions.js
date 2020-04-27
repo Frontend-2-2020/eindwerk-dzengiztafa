@@ -48,6 +48,14 @@ export const getPostDetailAction = postId => dispatch => {
     })
 };
 
+// Action to update a post
+export const updatePostAction = (postId, content, history) => {
+  axios.put('https://eindwer.jnnck.be/api/posts/' + postId, content)
+    .then(res => {
+      history.push('/posts')
+    })
+};
+
 // Action to delete a post
 export const deletePostAction = postId => dispatch => {
   axios.delete('https://eindwerk.jnnck.be/api/posts/' + postId)
