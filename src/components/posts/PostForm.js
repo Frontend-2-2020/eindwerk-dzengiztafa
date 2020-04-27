@@ -26,15 +26,14 @@ const PostForm = ({ setFieldValue, values, errors }) => {
         {/* New Post */}
         <FieldGroup
           type="text" identifier="title" error={ errors.title }
-          info="Please provide a title" placeholder="Some title" label="Provide a title"/>
+          info="Please provide a title" placeholder="Some title" />
       </div>
       <div className="form-group">
           <CkeGroup
-            identifier="body" setFieldValue={setFieldValue} values={values}
+            setFieldValue={ setFieldValue } values={ values } error={ errors.body }
             info="Please share what's on your mind. Insert plain text or use html"
-            error={errors.body}
           />
-        {errors && <small className="text-danger">{ errors.body }</small>}
+        { errors && <small className="text-danger">{ errors.body }</small> }
       </div>
       <input type="submit" className="btn btn-info btn-block mt-4"/>
     </Form>

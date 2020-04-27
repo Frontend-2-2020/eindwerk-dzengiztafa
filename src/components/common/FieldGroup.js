@@ -8,6 +8,7 @@ import classnames from "classnames";
 
 // Form handling
 import { Field, ErrorMessage } from "formik";
+import { isEmpty } from "../../utils/is-empty";
 
 
 // FieldGroup component
@@ -16,7 +17,8 @@ import { Field, ErrorMessage } from "formik";
 export const FieldGroup = ({ type, identifier, error, placeholder, info, label }) => {
   return (
     <div className="mb-2">
-      <label htmlFor={ identifier }>{ label }</label>
+      {!isEmpty(label) && <label htmlFor={ identifier }>{ label }</label>}
+
       <Field
         type={ type }
         className={ classnames("form-control form-control-lg", { "is-invalid": error }) }
@@ -40,6 +42,6 @@ FieldGroup.propTypes = {
   identifier: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   info: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   error: PropTypes.string,
 };

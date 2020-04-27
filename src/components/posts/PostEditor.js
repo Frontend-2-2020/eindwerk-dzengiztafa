@@ -2,7 +2,7 @@
 //////////
 
 // Base dependencies
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -23,10 +23,11 @@ import PostForm from "./PostForm";
 
 const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
 
-  const [initialValues, setInitialValues] = useState({
+  // Generate the initialNewPostValues
+  const initialNewPostValues = {
     title: initialTitle,
     body: "What's on your <strong>mind</strong>?"
-  });
+  };
 
   // Function to handle the sumbit of the form data
   const handleFormSubmit = (postInfo, { resetForm }) => {
@@ -42,7 +43,7 @@ const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
 
     // Reset the form
     resetForm({
-      ...initialValues
+      ...initialNewPostValues
     })
   };
 
@@ -65,11 +66,10 @@ const PostEditor = ({ getErrorsAction, createPostAction, initialTitle }) => {
         onSubmit={ handleFormSubmit }
         validate={ handleValidation }
         initialValues={{
-          title: initialTitle,
-          body: "What's on your <strong>mind</strong>?"
+          ...initialNewPostValues
         }}
       >
-          {props => <PostForm {...props}/>}
+        {props => <PostForm { ...props }/>}
       </Formik>
     </div>
   );
