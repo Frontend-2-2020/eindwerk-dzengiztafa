@@ -23,7 +23,6 @@ export const getAllPostsAction = () => dispatch => {
         payload: res.data
       })
     })
-
 };
 
 // Action to create a post

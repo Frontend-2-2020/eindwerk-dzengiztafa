@@ -2,14 +2,18 @@
 //////////
 
 // Base dependencies
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from 'react-redux';
 import { getPostDetailAction } from "../../redux/actions/postActions";
-import {isEmpty} from "../../utils/is-empty";
-import {Spinner} from "../spinner/Spinner";
+
+// Components
+import { Spinner } from "../spinner/Spinner";
+
+// Utils
+import { isEmpty } from "../../utils/is-empty";
 
 
 // EditPost component
@@ -21,8 +25,6 @@ const EditPost = ({ match, getPostDetailAction, post }) => {
   useEffect(() => {
     getPostDetailAction(match.params.postId)
   },[getPostDetailAction, match.params.postId]);
-
-  console.log(post.singlePost);
 
   // Generate content for the component
   let content;
