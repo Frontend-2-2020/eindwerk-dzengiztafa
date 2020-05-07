@@ -56,10 +56,10 @@ export const updatePostAction = (postId, content, history) => {
 };
 
 // Action to delete a post
-export const deletePostAction = postId => dispatch => {
+export const deletePostAction = (postId, history) => dispatch => {
   axios.delete('https://eindwerk.jnnck.be/api/posts/' + postId)
     .then(res => {
-      dispatch(getAllPostsAction());
+      history.push('/posts')
     })
 };
 

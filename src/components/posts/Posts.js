@@ -35,7 +35,7 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
   } else {
     content = post.batchPosts.data.map(post => (
       <PostIntro
-        content={ post.body } user={ post.user_id } createdAt={ post.created_at }
+        content={ post.body } user={post.user} createdAt={ post.created_at }
         title={ post.title } comments={ post.comments_count } key={ post.id } postId={ post.id }
       />
     ))

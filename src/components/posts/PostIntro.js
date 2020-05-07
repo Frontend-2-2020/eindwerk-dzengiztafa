@@ -3,7 +3,7 @@
 
 // Base dependencies
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Redux
@@ -15,14 +15,16 @@ import { deletePostAction } from "../../redux/actions/postActions";
 
 const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, deletePostAction }) => {
 
+  const history = useHistory();
+
   // Handler to delete a post
   const handleDeleteClick = () => {
-    deletePostAction(postId)
+    deletePostAction(postId, history)
   };
 
   let authContent;
   if(auth.isAuthenticated) {
-    if(user === auth.user.id) {
+    if(user.id === auth.user.id) {
       authContent = (
           <div>
             <Link to={`edit/${postId}`}
@@ -41,22 +43,19 @@ const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, de
     }
   }
 
-
-
   return (
     <div className="card mb-4">
       <div className="card-header">
         <div className="d-flex justify-content-between">
-          <div>{ title } - { createdAt }</div>
+          <div>{`${user.first_name} ${user.last_name}` } - { createdAt }</div>
           { authContent }
         </div>
       </div>
       <div className="card-body">
         <div className="d-flex">
-          <h5 className="card-title align-self-start">{ user }</h5>
+          <h5 className="card-title align-self-start">{ title }</h5>
         </div>
         <div dangerouslySetInnerHTML={{__html: content}}/>
-        {/*<p className="card-text">{ content.substring(0, 100) + "..." }</p>*/}
         <div className="d-flex justify-content-between align-items-end">
           <span className="badge badge-secondary">{ comments + " comments" }</span>
           <div>

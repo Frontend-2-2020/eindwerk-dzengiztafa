@@ -3,23 +3,53 @@
 
 // Base dependencies
 import React, { useEffect } from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from 'react-redux';
-import { getPostDetailAction } from '../../redux/actions/postActions';
-import {Spinner} from "../spinner/Spinner";
-import {isEmpty} from "../../utils/is-empty";
+import {deletePostAction, getPostDetailAction} from '../../redux/actions/postActions';
+import { Spinner } from "../spinner/Spinner";
+import { isEmpty } from "../../utils/is-empty";
 
 
 // PostDetail component
 ///////////////////////
 
-const PostDetail = ({ match, getPostDetailAction, post }) => {
+const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }) => {
+
+  const history = useHistory();
 
   useEffect(() => {
     getPostDetailAction(match.params.postId)
   },[match.params.postId]);
+
+  const handleDeleteClick = () => {
+    deletePostAction(post.singlePost.id, history)
+  };
+
+
+  // Generate auth content
+  let authContent;
+  if(auth.isAuthenticated && !isEmpty(post.singlePost)) {
+    if(post.singlePost.user.id === auth.user.id) {
+      authContent = (
+        <div>
+          <Link to={`edit/${post.singlePost.id}`}
+                className="btn btn-info btn-sm btn-warning ml-2"
+          >
+            <i className="far fa-edit"/>
+          </Link>
+          <button
+            onClick={handleDeleteClick}
+            className="btn btn-info btn-sm btn-danger ml-2"
+          >
+            <i className="fas fa-trash-alt"/>
+          </button>
+        </div>
+      )
+    }
+  }
 
   // Generate content for the component
   let content;
@@ -38,7 +68,6 @@ const PostDetail = ({ match, getPostDetailAction, post }) => {
               {comment.created_at}
             </div>
           </div>
-
         </div>
         <div className="card-body" dangerouslySetInnerHTML={{__html: post.singlePost.body}}/>
       </div>
@@ -46,9 +75,10 @@ const PostDetail = ({ match, getPostDetailAction, post }) => {
     content = (
       <div className="card">
         <div className="card-header d-flex justify-content-between">
-          <div className="postUser">{`${post.singlePost.user.first_name} ${post.singlePost.user.last_name}`}</div>
-          <div className="postCreated">{post.singlePost.created_at}</div>
-
+          <div className="postUser">
+            {`${post.singlePost.user.first_name} ${post.singlePost.user.last_name}`} - {post.singlePost.created_at}
+          </div>
+          {authContent}
         </div>
         <div className="card-body">
           <h5 className="card-title">{post.singlePost.title}</h5>
@@ -56,11 +86,8 @@ const PostDetail = ({ match, getPostDetailAction, post }) => {
         </div>
         {comments}
       </div>
-
-
     )
   }
-
 
   return (
     <>
@@ -74,6 +101,7 @@ const PostDetail = ({ match, getPostDetailAction, post }) => {
 PostDetail.propTypes = {
   match: PropTypes.object.isRequired,
   getPostDetailAction: PropTypes.func.isRequired,
+  deletePostAction: PropTypes.func.isRequired,
 };
 
 
@@ -84,4 +112,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getPostDetailAction })(PostDetail);
+export default connect(mapStateToProps, { getPostDetailAction, deletePostAction })(PostDetail);
