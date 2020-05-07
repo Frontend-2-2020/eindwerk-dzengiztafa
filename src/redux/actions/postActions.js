@@ -59,7 +59,11 @@ export const updatePostAction = (postId, content, history) => {
 export const deletePostAction = (postId, history) => dispatch => {
   axios.delete('https://eindwerk.jnnck.be/api/posts/' + postId)
     .then(res => {
-      history.push('/posts')
+      if(history.location.pathname === "/posts") {
+        dispatch(getAllPostsAction())
+      } else {
+        history.push('/posts')
+      }
     })
 };
 
