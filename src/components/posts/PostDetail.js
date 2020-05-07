@@ -8,8 +8,12 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from 'react-redux';
-import {deletePostAction, getPostDetailAction} from '../../redux/actions/postActions';
+import { deletePostAction, getPostDetailAction } from '../../redux/actions/postActions';
+
+// Components
 import { Spinner } from "../spinner/Spinner";
+
+// Utils
 import { isEmpty } from "../../utils/is-empty";
 
 
@@ -57,7 +61,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     content = <Spinner />
   } else {
     const comments = post.singlePost.comments.map(comment => (
-      <div className="card bg-light">
+      <div className="card bg-light" key={comment.id}>
         <div className="card-header">
           <div className="d-flex justify-content-between">
             <div className="d-flex justify-content-start align-items-center">

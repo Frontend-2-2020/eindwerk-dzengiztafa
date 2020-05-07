@@ -72,7 +72,7 @@ const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, de
 PostIntro.propTypes = {
   title: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  user: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
   content: PropTypes.string.isRequired,
   comments: PropTypes.number.isRequired,
   postId: PropTypes.number.isRequired,
