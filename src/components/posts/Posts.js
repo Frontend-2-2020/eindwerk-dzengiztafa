@@ -2,7 +2,7 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 // Redux
@@ -13,6 +13,7 @@ import { getAllPostsAction } from "../../redux/actions/postActions";
 import { Spinner } from "../spinner/Spinner";
 import PostIntro from "./PostIntro";
 import PostEditor from "./PostEditor";
+import Pagination from "../pagination/Pagination";
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
@@ -22,10 +23,40 @@ import { isEmpty } from "../../utils/is-empty";
 
 const Posts = ({ auth, post, getAllPostsAction }) => {
 
+  // State handling
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState(null);
+
   // When the component loads, fetch all the posts
   useEffect(() => {
-    getAllPostsAction();
-  }, [getAllPostsAction]);
+    getAllPostsAction(page);
+  }, [getAllPostsAction, page]);
+
+
+  useEffect(() => {
+    if(post.batchPosts) {
+      setData(post.batchPosts);
+    }
+  },[post.batchPosts]);
+
+  // Decrement page handler
+  const decrementPage = () => { page > 1 && setPage(page - 1) };
+
+  // Increment page handler
+  const incrementPage = () => { page < data.last_page && setPage(page + 1) };
+
+  // Set first page handler
+  const setPageBegin = () => { setPage(1) };
+
+  // Set last page handler
+  const setPageEnd = () => { setPage(data.last_page) };
+
+  // Set page number handler
+  const selectPage = (value) => {
+    (Math.abs(value) <= data.last_page)
+      ? setPage(Math.abs(value))
+      : setPage(data.last_page)
+  };
 
 
   // Generate content
@@ -45,6 +76,10 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
     <div>
       { auth.isAuthenticated && <PostEditor initialTitle=""/> }
       { content }
+
+      {post.batchPosts && <Pagination data={data} decrementPage={decrementPage} incrementPage={incrementPage}
+                  setPageEnd={setPageEnd} setPageBegin={setPageBegin} selectPage={selectPage}
+      />}
     </div>
   );
 };

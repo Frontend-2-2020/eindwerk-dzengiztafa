@@ -26,7 +26,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
 
   useEffect(() => {
     getPostDetailAction(match.params.postId)
-  },[match.params.postId]);
+  },[match.params.postId, getPostDetailAction]);
 
   const handleDeleteClick = () => {
     deletePostAction(post.singlePost.id, history)

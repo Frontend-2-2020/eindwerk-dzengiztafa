@@ -12,10 +12,14 @@ import axios from "axios";
 ///////////////
 
 // Action to get all the posts
-export const getAllPostsAction = () => dispatch => {
+export const getAllPostsAction = (page) => dispatch => {
   dispatch(setPostsLoading());
 
-  axios.get("https://eindwerk.jnnck.be/api/posts")
+  const url = page
+    ? "https://eindwerk.jnnck.be/api/posts?page=" + page
+    : "https://eindwerk.jnnck.be/api/posts";
+
+  axios.get(url)
     .then(res => {
 
       dispatch({

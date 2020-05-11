@@ -20,13 +20,28 @@ import EditPost from "./components/posts/EditPost";
 
 // Security
 import PrivateRoute from "./components/security/PrivateRoute";
+import jwt_decode from 'jwt-decode';
+
 
 // Styling
 import "./assets/App.scss";
 
 
+// Token validity
+
+// Check for token if page loads
+if (localStorage.jwtToken) {
+  // Decode token & get user info + expiration
+  const decoded = jwt_decode(localStorage.jwtToken);
+  // Set user and isAuthenticated
+  console.log(decoded)
+}
+
+
 // Full Application
 ///////////////////
+
+
 
 export const App = () => {
   return (
