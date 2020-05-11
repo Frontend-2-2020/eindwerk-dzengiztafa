@@ -39,7 +39,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     if(post.singlePost.user.id === auth.user.id) {
       authContent = (
         <div>
-          <Link to={`edit/${post.singlePost.id}`}
+          <Link to={`/edit/${post.singlePost.id}`}
                 className="btn btn-info btn-sm btn-warning ml-2"
           >
             <i className="far fa-edit"/>

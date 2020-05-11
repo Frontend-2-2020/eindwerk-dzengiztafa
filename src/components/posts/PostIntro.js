@@ -27,7 +27,7 @@ const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, de
     if(user.id === auth.user.id) {
       authContent = (
           <div>
-            <Link to={`edit/${postId}`}
+            <Link to={`/edit/${postId}`}
               className="btn btn-info btn-sm btn-warning ml-2"
             >
               <i className="far fa-edit"/>
