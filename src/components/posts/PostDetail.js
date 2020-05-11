@@ -15,6 +15,8 @@ import { Spinner } from "../spinner/Spinner";
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
+import Comment from "../comments/Comment";
+import CommentEditor from "../comments/CommentEditor";
 
 
 // PostDetail component
@@ -61,35 +63,28 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     content = <Spinner />
   } else {
     const comments = post.singlePost.comments.map(comment => (
-      <div className="card bg-light" key={comment.id}>
-        <div className="card-header">
-          <div className="d-flex justify-content-between">
-            <div className="d-flex justify-content-start align-items-center">
-              <img src={comment.user.avatar} alt="commenter avatar" height="20px" className="mr-2"/>
-              {`${comment.user.first_name} ${comment.user.last_name}`}
-            </div>
-            <div >
-              {comment.created_at}
-            </div>
-          </div>
-        </div>
-        <div className="card-body" dangerouslySetInnerHTML={{__html: post.singlePost.body}}/>
-      </div>
+      <Comment comment={comment}  key={comment.id} postId={post.singlePost.id}/>
     ));
     content = (
-      <div className="card">
-        <div className="card-header d-flex justify-content-between">
-          <div className="postUser">
-            {`${post.singlePost.user.first_name} ${post.singlePost.user.last_name}`} - {post.singlePost.created_at}
+      <div>
+        <div className="card">
+          <div className="card-header d-flex justify-content-between">
+            <div className="postUser">
+              {`${post.singlePost.user.first_name} ${post.singlePost.user.last_name}`} - {post.singlePost.created_at}
+            </div>
+            {authContent}
           </div>
-          {authContent}
+          <div className="card-body">
+            <h5 className="card-title">{post.singlePost.title}</h5>
+            <div dangerouslySetInnerHTML={{__html: post.singlePost.body}}/>
+          </div>
         </div>
-        <div className="card-body">
-          <h5 className="card-title">{post.singlePost.title}</h5>
-          <div dangerouslySetInnerHTML={{__html: post.singlePost.body}}/>
-        </div>
+
+        <CommentEditor postId={post.singlePost.id}/>
+
         {comments}
       </div>
+
     )
   }
 
