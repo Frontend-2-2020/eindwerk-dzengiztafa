@@ -2,13 +2,13 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 // Redux
-import { connect } from 'react-redux';
-import { deletePostAction, getPostDetailAction } from '../../redux/actions/postActions';
+import { connect } from "react-redux";
+import { deletePostAction, getPostDetailAction } from "../../redux/actions/postActions";
 
 // Components
 import { Spinner } from "../spinner/Spinner";

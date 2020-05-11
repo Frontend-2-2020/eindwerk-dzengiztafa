@@ -79,7 +79,6 @@ export const editPostAction = (postId, postBody, history) => dispatch => {
 
 // Action to add a comment to a post
 export const addCommentAction = commentData => dispatch => {
-
   axios.post("https://eindwerk.jnnck.be/api/comments", commentData)
     .then(res => {
       dispatch(getPostDetailAction(commentData.blog_post_id))
@@ -88,8 +87,6 @@ export const addCommentAction = commentData => dispatch => {
 
 // Action to delete a comment from a post
 export const removeCommentAction = (commentId, postId) => dispatch => {
-  console.log(postId)
-  console.log('Removing comment with id ' + commentId)
   axios.delete("https://eindwerk.jnnck.be/api/comments/" + commentId)
     .then(res => {
       dispatch(getPostDetailAction(postId))

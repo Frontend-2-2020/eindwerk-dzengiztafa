@@ -20,7 +20,7 @@ import EditPost from "./components/posts/EditPost";
 
 // Security
 import PrivateRoute from "./components/security/PrivateRoute";
-import jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 
 
 // Styling

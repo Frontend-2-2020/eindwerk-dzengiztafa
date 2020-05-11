@@ -2,12 +2,12 @@
 //////////
 
 // Base dependencies
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 // Redux
-import { connect } from 'react-redux';
-import { createPostAction, addCommentAction } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
+import { addCommentAction } from "../../redux/actions/postActions";
 import { getErrorsAction } from "../../redux/actions/errorActions";
 
 // Form handling
@@ -30,8 +30,6 @@ const CommentEditor = ({ getErrorsAction, addCommentAction, postId }) => {
 
   // Function to handle the sumbit of the form data
   const handleFormSubmit = (commentInfo, { resetForm }) => {
-
-    console.log('handling commit submit');
 
     // Generate the post data
     const newCommentData = {

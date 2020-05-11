@@ -2,13 +2,14 @@
 //////////
 
 // Base dependencies
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 
 // Redux
-import { connect } from 'react-redux';
-import { removeCommentAction, editCommentAction } from '../../redux/actions/postActions';
-import {isEmpty} from "../../utils/is-empty";
-import {Link} from "react-router-dom";
+import { connect } from "react-redux";
+import { removeCommentAction, editCommentAction } from "../../redux/actions/postActions";
 
 
 // Comment component
@@ -16,7 +17,6 @@ import {Link} from "react-router-dom";
 const Comment = ({comment, auth, removeCommentAction, postId}) => {
 
   const handleDeleteClick = () => {
-    console.log('deleting comment');
     removeCommentAction(comment.id, postId)
   };
 
@@ -57,6 +57,15 @@ const Comment = ({comment, auth, removeCommentAction, postId}) => {
       <div className="card-body" dangerouslySetInnerHTML={{__html: comment.body}}/>
     </div>
   );
+};
+
+
+// Prop types for the component
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  removeCommentAction: PropTypes.func.isRequired,
+  postId: PropTypes.number.isRequired,
 };
 
 
