@@ -47,7 +47,9 @@ const CommentEditorModal = ({ getErrorsAction, addCommentAction, postId, toggleM
     // Reset the form
     resetForm({
       ...initialCommentValues
-    })
+    });
+
+    toggleModal()
   };
 
   // Function to handle the validation of the form
@@ -84,7 +86,6 @@ const CommentEditorModal = ({ getErrorsAction, addCommentAction, postId, toggleM
 
       {/* Modal Footer */}
       <ModalFooter className="deadModalButtons">
-
         <Link to="/posts" className="btn btn-info" onClick={ toggleModal }>
           Go back
         </Link>

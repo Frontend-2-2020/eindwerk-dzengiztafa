@@ -87,7 +87,6 @@ const PostEditorModal = ({ getErrorsAction, createPostAction, initialTitle, togg
 
       {/* Modal Footer */}
       <ModalFooter className="deadModalButtons">
-
         <Link to="/posts" className="btn btn-info" onClick={ toggleModal }>
           Go back
         </Link>
@@ -104,7 +103,6 @@ PostEditorModal.propTypes = {
   initialTitle: PropTypes.string.isRequired,
   toggleModal: PropTypes.func.isRequired,
   modalOpen: PropTypes.bool.isRequired,
-
 };
 
 
