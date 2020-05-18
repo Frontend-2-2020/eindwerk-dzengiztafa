@@ -24,7 +24,8 @@ import jwt_decode from "jwt-decode";
 
 
 // Styling
-import "./assets/App.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 // Token validity

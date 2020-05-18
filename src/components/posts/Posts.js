@@ -12,8 +12,9 @@ import { getAllPostsAction } from "../../redux/actions/postActions";
 // Components
 import { Spinner } from "../spinner/Spinner";
 import PostIntro from "./PostIntro";
-import PostEditor from "./PostEditor";
 import Pagination from "../pagination/Pagination";
+import PostEditorModal from "./PostEditorModal";
+
 
 // Utils
 import { isEmpty } from "../../utils/is-empty";
@@ -26,6 +27,15 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
   // State handling
   const [page, setPage] = useState(1);
   const [data, setData] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Modal toggler
+  const toggleModal = () => {
+
+    console.log('toggling modal');
+
+    setModalOpen(!modalOpen);
+  };
 
   // When the component loads, fetch all the posts
   useEffect(() => {
@@ -74,13 +84,18 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
 
   return (
     <div>
-      { auth.isAuthenticated && <PostEditor initialTitle=""/> }
+      {auth.isAuthenticated &&
+          <button className="btn btn-outline btn-info" onClick={toggleModal}>Add a post</button> }
       { content }
 
       {post.batchPosts && <Pagination data={data} decrementPage={decrementPage} incrementPage={incrementPage}
                   setPageEnd={setPageEnd} setPageBegin={setPageBegin} selectPage={selectPage}
       />}
-    </div>
+
+        <PostEditorModal initialTitle="" modalOpen={modalOpen} toggleModal={() => setModalOpen(!modalOpen)} />
+
+        </div>
+
   );
 };
 

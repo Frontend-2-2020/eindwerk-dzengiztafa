@@ -25,6 +25,11 @@ const CkeGroup = ({ values, setFieldValue, info, error }) => {
             const data = editor.getData();
             setFieldValue('body', data);
           }}
+          config={{
+            mediaEmbed: {
+              previewsInData: true
+            }
+          }}
         />
       </div>
       <small className="form-text text-muted">{ info }</small>
