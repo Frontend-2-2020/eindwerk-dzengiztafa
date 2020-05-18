@@ -9,53 +9,50 @@ import PropTypes from 'prop-types';
 // Redux
 import { connect } from "react-redux";
 
-// Components
-import PostForm from "./PostForm";
+// Comments
+import CommentForm from "./CommentForm";
 
 // Form handling
-import { validateNewPostInput } from "../../validation/post";
+import { validateNewCommentInput } from "../../validation/comment";
 import { Formik } from "formik";
 
 // ReactStrap
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { getErrorsAction } from "../../redux/actions/errorActions";
-import { createPostAction } from "../../redux/actions/postActions";
+import { addCommentAction } from "../../redux/actions/postActions";
 
 
 // Dead Modal
 /////////////
 
-const PostEditorModal = ({ getErrorsAction, createPostAction, initialTitle, toggleModal, modalOpen }) => {
+const CommentEditorModal = ({ getErrorsAction, addCommentAction, postId, toggleModal, modalOpen }) => {
 
   // Generate the initialNewPostValues
-  const initialNewPostValues = {
-    title: initialTitle,
+  const initialCommentValues = {
     body: "What's on your <strong>mind</strong>?"
   };
 
   // Function to handle the sumbit of the form data
-  const handleFormSubmit = (postInfo, { resetForm }) => {
+  const handleFormSubmit = (commentInfo, { resetForm }) => {
 
     // Generate the post data
-    const newPostData = {
-      title: postInfo.title,
-      body: postInfo.body
+    const newCommentData = {
+      blog_post_id: postId,
+      body: commentInfo.body
     };
 
     // Fire up the action to create a post
-    createPostAction(newPostData);
+    addCommentAction(newCommentData);
 
     // Reset the form
     resetForm({
-      ...initialNewPostValues
-    });
-
-    toggleModal()
+      ...initialCommentValues
+    })
   };
 
   // Function to handle the validation of the form
   const handleValidation = input => {
-    const errors = validateNewPostInput(input);
+    const errors = validateNewCommentInput(input);
 
     // Trigger the redux action to get the errors
     getErrorsAction(errors);
@@ -69,7 +66,7 @@ const PostEditorModal = ({ getErrorsAction, createPostAction, initialTitle, togg
 
       {/* Modal Header */}
       <ModalHeader toggle={ () => toggleModal(!modalOpen) }>
-        <span className="modalHeader">Create a new post</span>
+        <span className="modalHeader">Add a comment</span>
       </ModalHeader>
 
       {/* Modal body */}
@@ -78,10 +75,10 @@ const PostEditorModal = ({ getErrorsAction, createPostAction, initialTitle, togg
           onSubmit={ handleFormSubmit }
           validate={ handleValidation }
           initialValues={{
-            ...initialNewPostValues
+            ...initialCommentValues
           }}
         >
-          {props => <PostForm { ...props }/>}
+          {props => <CommentForm { ...props }/>}
         </Formik>
       </ModalBody>
 
@@ -98,7 +95,7 @@ const PostEditorModal = ({ getErrorsAction, createPostAction, initialTitle, togg
 
 
 // Prop types for the component
-PostEditorModal.propTypes = {
+CommentEditorModal.propTypes = {
   getErrorsAction: PropTypes.func.isRequired,
   createPostAction: PropTypes.func.isRequired,
   initialTitle: PropTypes.string.isRequired,
@@ -117,4 +114,4 @@ const mapStateToProps = (state) => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { getErrorsAction, createPostAction })(PostEditorModal);
+export default connect(mapStateToProps, { getErrorsAction, addCommentAction })(CommentEditorModal);

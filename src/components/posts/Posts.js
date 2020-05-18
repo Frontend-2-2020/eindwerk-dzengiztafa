@@ -15,7 +15,6 @@ import PostIntro from "./PostIntro";
 import Pagination from "../pagination/Pagination";
 import PostEditorModal from "./PostEditorModal";
 
-
 // Utils
 import { isEmpty } from "../../utils/is-empty";
 
@@ -31,9 +30,6 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
 
   // Modal toggler
   const toggleModal = () => {
-
-    console.log('toggling modal');
-
     setModalOpen(!modalOpen);
   };
 
@@ -85,16 +81,22 @@ const Posts = ({ auth, post, getAllPostsAction }) => {
   return (
     <div>
       {auth.isAuthenticated &&
-          <button className="btn btn-outline btn-info" onClick={toggleModal}>Add a post</button> }
-      { content }
-
-      {post.batchPosts && <Pagination data={data} decrementPage={decrementPage} incrementPage={incrementPage}
-                  setPageEnd={setPageEnd} setPageBegin={setPageBegin} selectPage={selectPage}
-      />}
-
-        <PostEditorModal initialTitle="" modalOpen={modalOpen} toggleModal={() => setModalOpen(!modalOpen)} />
-
+        <div className="d-flex justify-content-center align-items-center m-4">
+          <button className="btn btn-outline btn-info" onClick={toggleModal}>Add a post</button>
         </div>
+      }
+
+      {content}
+
+      {post.batchPosts &&
+        <Pagination data={data} decrementPage={decrementPage} incrementPage={incrementPage}
+         setPageEnd={setPageEnd} setPageBegin={setPageBegin} selectPage={selectPage}
+        />
+      }
+
+      <PostEditorModal initialTitle="" modalOpen={modalOpen} toggleModal={() => setModalOpen(!modalOpen)}/>
+
+    </div>
 
   );
 };

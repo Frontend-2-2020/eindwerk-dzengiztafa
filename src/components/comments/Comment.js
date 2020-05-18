@@ -6,7 +6,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-
 // Redux
 import { connect } from "react-redux";
 import { removeCommentAction, editCommentAction } from "../../redux/actions/postActions";
@@ -14,7 +13,8 @@ import { removeCommentAction, editCommentAction } from "../../redux/actions/post
 
 // Comment component
 ////////////////////
-const Comment = ({comment, auth, removeCommentAction, postId}) => {
+
+const Comment = ({ comment, auth, removeCommentAction, postId }) => {
 
   const handleDeleteClick = () => {
     removeCommentAction(comment.id, postId)
@@ -25,13 +25,14 @@ const Comment = ({comment, auth, removeCommentAction, postId}) => {
     if(comment.user_id === auth.user.id) {
       authContent = (
         <div>
-          <Link to={`/edit/${comment.id}`}
-                className="btn btn-info btn-sm btn-warning ml-2"
+          <Link
+            to={ `/edit/${comment.id}` }
+            className="btn btn-info btn-sm btn-warning ml-2"
           >
             <i className="far fa-edit"/>
           </Link>
           <button
-            onClick={handleDeleteClick}
+            onClick={ handleDeleteClick }
             className="btn btn-info btn-sm btn-danger ml-2"
           >
             <i className="fas fa-trash-alt"/>
@@ -46,15 +47,15 @@ const Comment = ({comment, auth, removeCommentAction, postId}) => {
       <div className="card-header">
         <div className="d-flex justify-content-between">
           <div className="d-flex justify-content-start align-items-center">
-            <img src={comment.user.avatar} alt="commenter avatar" height="20px" className="mr-2"/>
-            {`${comment.user.first_name} ${comment.user.last_name}`} - {comment.created_at}
+            <img src={ comment.user.avatar } alt="commenter avatar" height="20px" className="mr-2"/>
+            { `${comment.user.first_name } ${ comment.user.last_name}` } - { comment.created_at }
           </div>
           <div >
             {authContent}
           </div>
         </div>
       </div>
-      <div className="card-body" dangerouslySetInnerHTML={{__html: comment.body}}/>
+      <div className="card-body" dangerouslySetInnerHTML={{ __html: comment.body }}/>
     </div>
   );
 };

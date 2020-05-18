@@ -2,7 +2,7 @@
 //////////
 
 // Base dependencies
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -16,7 +16,7 @@ import { Spinner } from "../spinner/Spinner";
 // Utils
 import { isEmpty } from "../../utils/is-empty";
 import Comment from "../comments/Comment";
-import CommentEditor from "../comments/CommentEditor";
+import CommentEditorModal from "../comments/CommentEditorModal";
 
 
 // PostDetail component
@@ -25,6 +25,14 @@ import CommentEditor from "../comments/CommentEditor";
 const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }) => {
 
   const history = useHistory();
+
+  // State handling
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // Modal toggler
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  };
 
   useEffect(() => {
     getPostDetailAction(match.params.postId)
@@ -41,13 +49,13 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     if(post.singlePost.user.id === auth.user.id) {
       authContent = (
         <div>
-          <Link to={`/edit/${post.singlePost.id}`}
+          <Link to={ `/edit/${post.singlePost.id}` }
                 className="btn btn-info btn-sm btn-warning ml-2"
           >
             <i className="far fa-edit"/>
           </Link>
           <button
-            onClick={handleDeleteClick}
+            onClick={ handleDeleteClick }
             className="btn btn-info btn-sm btn-danger ml-2"
           >
             <i className="fas fa-trash-alt"/>
@@ -63,26 +71,30 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     content = <Spinner />
   } else {
     const comments = post.singlePost.comments.map(comment => (
-      <Comment comment={comment}  key={comment.id} postId={post.singlePost.id}/>
+      <Comment comment={ comment }  key={ comment.id } postId={ post.singlePost.id }/>
     ));
     content = (
       <div>
         <div className="card">
           <div className="card-header d-flex justify-content-between">
             <div className="postUser">
-              {`${post.singlePost.user.first_name} ${post.singlePost.user.last_name}`} - {post.singlePost.created_at}
+              { `${post.singlePost.user.first_name } ${ post.singlePost.user.last_name }`} - { post.singlePost.created_at }
             </div>
             {authContent}
           </div>
           <div className="card-body">
-            <h5 className="card-title">{post.singlePost.title}</h5>
-            <div dangerouslySetInnerHTML={{__html: post.singlePost.body}}/>
+            <h5 className="card-title">{ post.singlePost.title }</h5>
+            <div dangerouslySetInnerHTML={{ __html: post.singlePost.body }}/>
           </div>
         </div>
 
-        <CommentEditor postId={post.singlePost.id}/>
+        <div className="d-flex justify-content-center align-items center m-4">
+          <button className="btn btn-outline-info" onClick={ toggleModal }>Add a comment</button>
+        </div>
 
-        {comments}
+        <CommentEditorModal postId={ post.singlePost.id } toggleModal={ toggleModal } modalOpen={ modalOpen }/>
+
+        { comments }
       </div>
 
     )
@@ -90,7 +102,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
 
   return (
     <>
-      {content}
+      { content }
     </>
   );
 };
@@ -110,5 +122,9 @@ const mapStateToProps = state => ({
   errors: state.errors,
   auth: state.auth
 });
+
+
+// Exports
+//////////
 
 export default connect(mapStateToProps, { getPostDetailAction, deletePostAction })(PostDetail);
