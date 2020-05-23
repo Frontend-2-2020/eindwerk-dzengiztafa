@@ -98,11 +98,10 @@ const CommentEditorModal = ({ getErrorsAction, addCommentAction, postId, toggleM
 // Prop types for the component
 CommentEditorModal.propTypes = {
   getErrorsAction: PropTypes.func.isRequired,
-  createPostAction: PropTypes.func.isRequired,
-  initialTitle: PropTypes.string.isRequired,
+  addCommentAction: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
   modalOpen: PropTypes.bool.isRequired,
-
+  postId: PropTypes.number.isRequired,
 };
 
 

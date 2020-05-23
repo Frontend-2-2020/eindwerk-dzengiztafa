@@ -55,7 +55,7 @@ export const getPostDetailAction = postId => dispatch => {
 export const updatePostAction = (postId, content, history) => {
   axios.put('https://eindwerk.jnnck.be/api/posts/' + postId, content)
     .then(res => {
-      history.push('/posts')
+      history.push('/posts');
     })
 };
 
