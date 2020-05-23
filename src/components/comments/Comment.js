@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 // Redux
 import { connect } from "react-redux";
-import { removeCommentAction, editCommentAction } from "../../redux/actions/postActions";
+import { removeCommentAction } from "../../redux/actions/commentActions";
 
 
 // Comment component
@@ -26,7 +26,7 @@ const Comment = ({ comment, auth, removeCommentAction, postId }) => {
       authContent = (
         <div>
           <Link
-            to={ `/edit/${comment.id}` }
+            to={ `/editComment/${comment.id}` }
             className="btn btn-info btn-sm btn-warning ml-2"
           >
             <i className="far fa-edit"/>
@@ -80,4 +80,4 @@ const mapStateToProps = state => ({
 // Exports
 //////////
 
-export default connect(mapStateToProps, { removeCommentAction, editCommentAction })(Comment);
+export default connect(mapStateToProps, { removeCommentAction })(Comment);

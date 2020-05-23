@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from "react-redux";
+import { getErrorsAction } from "../../redux/actions/errorActions";
+import { addCommentAction } from "../../redux/actions/commentActions";
 
 // Comments
 import CommentForm from "./CommentForm";
@@ -18,8 +20,7 @@ import { Formik } from "formik";
 
 // ReactStrap
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { getErrorsAction } from "../../redux/actions/errorActions";
-import { addCommentAction } from "../../redux/actions/postActions";
+
 
 
 // Dead Modal
@@ -107,7 +108,8 @@ CommentEditorModal.propTypes = {
 
 // Map the redux state to props
 const mapStateToProps = (state) => ({
-  post: state.post
+  post: state.post,
+  comment: state.comment
 });
 
 

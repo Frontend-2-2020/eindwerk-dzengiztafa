@@ -71,36 +71,6 @@ export const deletePostAction = (postId, history) => dispatch => {
     })
 };
 
-// Action to edit a post
-export const editPostAction = (postId, postBody, history) => dispatch => {
-  console.log('Editing postId ' + postId + ' with body: ' + postBody);
-  history.push('/posts');
-};
-
-// Action to add a comment to a post
-export const addCommentAction = commentData => dispatch => {
-  axios.post("https://eindwerk.jnnck.be/api/comments", commentData)
-    .then(res => {
-      dispatch(getPostDetailAction(commentData.blog_post_id))
-    })
-};
-
-// Action to delete a comment from a post
-export const removeCommentAction = (commentId, postId) => dispatch => {
-  axios.delete("https://eindwerk.jnnck.be/api/comments/" + commentId)
-    .then(res => {
-      dispatch(getPostDetailAction(postId))
-    })
-    .catch(err => {
-      console.log(err)
-    })
-};
-
-// Action to edit a comment
-export const editCommentAction = commentId => dispatch => {
-  console.log('Editing comment with id ' + commentId)
-};
-
 // Action to set the posts as loading
 const setPostsLoading = () => {
   return {

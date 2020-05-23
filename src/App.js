@@ -25,6 +25,7 @@ import jwt_decode from "jwt-decode";
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EditComment from "./components/comments/EditComment";
 
 
 
@@ -59,6 +60,7 @@ export const App = () => {
             <Route exact path="/login" component={ Login } />
             <Route exact path="/post/:postId" component={ PostDetail } />
             <PrivateRoute exact path="/edit/:postId" component={ EditPost } />
+            <PrivateRoute exact path="/editComment/:commentId" component={ EditComment } />
           </div>
         </div>
       </Router>
