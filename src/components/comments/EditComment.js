@@ -46,6 +46,7 @@ const EditComment = ({ match, getCommentAction, getErrorsAction, updateCommentAc
     // Fire up the action to create a post
     updateCommentAction(comment.singleComment, newCommentData);
 
+    // go back to original post
     history.push('/post/' + comment.blog_post_id);
 
   };
@@ -56,8 +57,6 @@ const EditComment = ({ match, getCommentAction, getErrorsAction, updateCommentAc
 
     // Trigger the redux action to get the errors
     getErrorsAction(errors);
-
-    console.log(errors);
 
     // Return the errors to formik
     return errors
