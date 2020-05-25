@@ -29,7 +29,7 @@ const NavBar = ({ logOutUserAction, auth }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">Message board</Link>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
         <span className="navbar-toggler-icon"></span>

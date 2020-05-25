@@ -4,7 +4,7 @@
 // Base dependencies
 import React, { useEffect } from "react";
 import { PropTypes } from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 // Redux
 import { connect } from 'react-redux';
@@ -30,7 +30,12 @@ const Landing = ({ auth }) => {
 
     return (
       <div className="landing">
-        <h1>Some Landing page</h1>
+        <div className="gray_overlay">
+          <div className="landing_functionality">
+            <div><Link to="/login" className="btn btn-light landing_button">Login</Link></div>
+            <div><Link to="/register" className="btn btn-outline-light landing_button">Register</Link></div>
+          </div>
+        </div>
       </div>
     );
 };

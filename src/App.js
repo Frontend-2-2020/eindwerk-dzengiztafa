@@ -25,9 +25,8 @@ import jwt_decode from "jwt-decode";
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/App.scss';
 import EditComment from "./components/comments/EditComment";
-
-
 
 // Token validity
 
@@ -42,8 +41,6 @@ if (localStorage.jwtToken) {
 
 // Full Application
 ///////////////////
-
-
 
 export const App = () => {
   return (
