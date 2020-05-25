@@ -22,7 +22,7 @@ const RegisterForm = ({ errors }) => {
     <Form>
       <div className="form-group">
 
-        {/* Row for basid identification */}
+        {/* Row for basic identification */}
         <div className="row">
           <div className="col-md-6">
             {/* First name */}
