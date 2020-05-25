@@ -22,6 +22,7 @@ const RegisterForm = ({ errors }) => {
     <Form>
       <div className="form-group">
 
+        {/* Row for basid identification */}
         <div className="row">
           <div className="col-md-6">
             {/* First name */}
@@ -42,6 +43,7 @@ const RegisterForm = ({ errors }) => {
           type="email" identifier="email" error={ errors.email }
           info="Wih what Email address are you registering?" placeholder="john@doe.com" label="Email address" />
 
+        {/* Row for security */}
         <div className="row">
           <div className="col-md-6">
             {/* Password */}
@@ -57,6 +59,7 @@ const RegisterForm = ({ errors }) => {
           </div>
         </div>
 
+        {/* Row for personalisation */}
         <div className="row">
           <div className="col-xl-2">
             {/* Color */}
