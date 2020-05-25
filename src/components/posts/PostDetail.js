@@ -78,6 +78,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
         <div className="card">
           <div className="card-header d-flex justify-content-between">
             <div className="postUser">
+              <img src={post.singlePost.user.avatar} alt="user avatar" height="20px" className="mr-2"/>
               { `${post.singlePost.user.first_name } ${ post.singlePost.user.last_name }`} - { post.singlePost.created_at }
             </div>
             {authContent}

@@ -47,7 +47,7 @@ const PostIntro = ({ auth, title, createdAt, user, content, comments, postId, de
     <div className="card mb-4">
       <div className="card-header">
         <div className="d-flex justify-content-between">
-          <div>{`${user.first_name} ${user.last_name}` } - { createdAt }</div>
+          <div><img src={user.avatar} alt="user avatar" height="20px" className="mr-2"/>{`${user.first_name} ${user.last_name}` } - { createdAt }</div>
           { authContent }
         </div>
       </div>

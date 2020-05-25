@@ -13,10 +13,10 @@ import PropTypes from 'prop-types';
 export const NavAuthenticated = ({ user, handleLogout }) => {
   return (
     <ul className="navbar-nav ml-auto">
-      <li>
+      <li className="navbar-item d-flex align-items-center">
         <Link
           to="/profile"
-          className="nav-link">
+          className="nav-link d-flex align-items-center">
           <img className="rounded-circle" src={ user.avatar } alt={ user.first_name }
                style={{ width: '25px', marginRight: '5px' }}/>
         </Link>
@@ -25,7 +25,7 @@ export const NavAuthenticated = ({ user, handleLogout }) => {
         <Link className="nav-link" to="#" onClick={
           handleLogout
         }>
-          Log out <i className="fas fa-sign-out-alt fa-lg ml-2 text-align-center"/>
+          Log out <i className="fas fa-sign-out-alt ml-2 text-align-center"/>
         </Link>
       </li>
     </ul>
