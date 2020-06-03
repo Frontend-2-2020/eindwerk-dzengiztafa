@@ -89,9 +89,14 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
           </div>
         </div>
 
-        <div className="d-flex justify-content-center align-items center m-4">
-          <button className="btn btn-outline-info" onClick={ toggleModal }>Add a comment</button>
-        </div>
+        {
+          (auth.isAuthenticated && !isEmpty(post.singlePost))
+          &&
+          <div className="d-flex justify-content-center align-items center m-4">
+            <button className="btn btn-outline-info" onClick={ toggleModal }>Add a comment</button>
+          </div>
+        }
+
 
         <CommentEditorModal postId={ post.singlePost.id } toggleModal={ toggleModal } modalOpen={ modalOpen }/>
 

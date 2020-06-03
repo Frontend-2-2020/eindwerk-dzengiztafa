@@ -14,14 +14,6 @@ export const NavAuthenticated = ({ user, handleLogout }) => {
   return (
     <ul className="navbar-nav ml-auto">
       <li className="navbar-item d-flex align-items-center">
-        <Link
-          to="/profile"
-          className="nav-link d-flex align-items-center">
-          <img className="rounded-circle" src={ user.avatar } alt={ user.first_name }
-               style={{ width: '25px', marginRight: '5px' }}/>
-        </Link>
-      </li>
-      <li className="navbar-item d-flex align-items-center">
         <Link className="nav-link" to="#" onClick={
           handleLogout
         }>
