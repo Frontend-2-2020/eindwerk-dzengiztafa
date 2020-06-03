@@ -75,7 +75,7 @@ const PostDetail = ({ match, getPostDetailAction, post, auth, deletePostAction }
     ));
     content = (
       <div>
-        <div className="card">
+        <div className="card mb-4">
           <div className="card-header d-flex justify-content-between">
             <div className="postUser">
               <img src={post.singlePost.user.avatar} alt="user avatar" height="20px" className="mr-2"/>
